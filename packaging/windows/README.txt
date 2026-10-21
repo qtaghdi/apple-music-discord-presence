@@ -7,3 +7,15 @@ APPLE MUSIC DISCORD PRESENCE | Windows 10/11
 
 Keep this folder in place after installation. Use Uninstall.cmd to remove
 login startup. No Node.js installation is required.
+
+CUSTOMIZATION
+
+Edit this file, then double-click Restart.cmd to apply the changes:
+%APPDATA%\Apple Music Discord Presence\config.json
+
+- showPaused: show or hide paused tracks
+- presence.showAlbum: show or hide the album name
+- presence.showTimeRemaining: show or hide playback time
+- presence.showButton: show or hide the Apple Music button
+- presence.displayOrder: "artist-album" or "album-artist"
+- artwork.enabled: show or hide album artwork

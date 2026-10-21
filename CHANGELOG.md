@@ -2,6 +2,27 @@
 
 All notable user-facing changes are recorded here. Release-specific download notes live in [`releases/`](releases/).
 
+## [0.3.0] - 2026-10-21
+
+### Added
+
+- Configurable album names, album artwork, playback timestamps, paused activity, and Apple Music buttons.
+- Artist-first and album-first metadata ordering.
+- One-click restart helpers for macOS and Windows ZIP installations.
+
+### Changed
+
+- Installers now preserve an existing `config.json` during upgrades.
+- Apple catalog lookup can still provide the Apple Music button when album artwork is hidden.
+- Expanded automated coverage from nine to sixteen tests, including configuration compatibility and display combinations.
+
+### Known limitations
+
+- A Discord Application ID must still be entered during first installation until a shared project ID is embedded.
+- Configuration is file-based and requires restarting the app to apply changes.
+- Windows end-to-end playback testing requires an interactive Windows desktop with Apple Music and Discord signed in.
+- macOS downloads are not signed or notarized, so the first launch may require **Right-click → Open**.
+
 ## [0.2.0] - 2026-10-21
 
 ### Added
@@ -34,5 +55,6 @@ All notable user-facing changes are recorded here. Release-specific download not
 - Direct Discord IPC, automatic reconnect, timestamps, seeks, and optional album artwork.
 - LaunchAgent installer, documentation, and unit tests.
 
+[0.3.0]: https://github.com/qtaghdi/apple-music-discord-presence/releases/tag/v0.3.0
 [0.2.0]: https://github.com/qtaghdi/apple-music-discord-presence/releases/tag/v0.2.0
 [0.1.0]: https://github.com/qtaghdi/apple-music-discord-presence/commits/9ebfbfc

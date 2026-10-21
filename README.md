@@ -22,6 +22,7 @@ After extracting the ZIP, keep its folder somewhere permanent and run `Install.c
 - Direct Discord IPC supports Unix sockets on macOS and named pipes on Windows, including all slots from `discord-ipc-0` through `discord-ipc-9`.
 - Reconnect backoff and activity replay survive Discord restarts.
 - Track changes, play/pause transitions, seeks, and accurate start/end timestamps are handled.
+- Album details, artwork, time remaining, pause state, the Apple Music button, and metadata order are configurable.
 - Optional artwork comes directly from Apple's public iTunes Search API and never blocks text presence.
 - There are no runtime npm dependencies, remote relay, analytics, bot token, client secret, or Discord OAuth login.
 
@@ -80,10 +81,29 @@ The app reads `AMDP_CONFIG` first, then the platform config:
   "discordClientId": "123456789012345678",
   "pollIntervalMs": 1000,
   "showPaused": true,
+  "presence": {
+    "showAlbum": true,
+    "showTimeRemaining": true,
+    "showButton": true,
+    "displayOrder": "artist-album"
+  },
   "artwork": { "enabled": true, "country": "KR" },
   "fallbackLargeImageKey": "apple_music"
 }
 ```
+
+Presence options:
+
+| Setting | Effect |
+| --- | --- |
+| `showPaused` | Keep the current track visible while playback is paused. |
+| `presence.showAlbum` | Include the album name next to the artist and in the artwork tooltip. |
+| `presence.showTimeRemaining` | Show Discord's live playback timestamps. |
+| `presence.showButton` | Add the **Listen on Apple Music** button when a catalog match is found. |
+| `presence.displayOrder` | Use `artist-album` for `Artist · Album` or `album-artist` for `Album · Artist`. |
+| `artwork.enabled` | Show album artwork when a catalog match is found. |
+
+Restart the app after changing `config.json`. ZIP installations include `Restart.command` on macOS and `Restart.cmd` on Windows. Installers preserve an existing configuration during upgrades.
 
 `fallbackLargeImageKey` is optional. If used, upload an image with that key under the Discord application's Rich Presence art assets.
 
@@ -130,7 +150,7 @@ Full Music-to-Discord integration tests remain manual because they need an inter
 
 ## Privacy
 
-Track metadata stays on the computer except when optional artwork lookup sends artist, album, and title to Apple's iTunes Search API. Discord receives the presence being published. No credentials, Apple Music token, Discord bot token, analytics, or intermediary server are used.
+Track metadata stays on the computer except when artwork or the Apple Music button is enabled; catalog lookup then sends artist, album, and title to Apple's iTunes Search API. Set both `artwork.enabled` and `presence.showButton` to `false` for fully local metadata handling. Discord receives the presence being published. No credentials, Apple Music token, Discord bot token, analytics, or intermediary server are used.
 
 ## License
 

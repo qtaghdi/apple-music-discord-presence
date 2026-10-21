@@ -2,6 +2,12 @@
   "discordClientId": "YOUR_DISCORD_APPLICATION_ID",
   "pollIntervalMs": 1000,
   "showPaused": true,
+  "presence": {
+    "showAlbum": true,
+    "showTimeRemaining": true,
+    "showButton": true,
+    "displayOrder": "artist-album"
+  },
   "artwork": {
     "enabled": true,
     "country": "KR"

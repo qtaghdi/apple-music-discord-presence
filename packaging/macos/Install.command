@@ -8,19 +8,23 @@ CONFIG_FILE="$CONFIG_DIR/config.json"
 PLIST="$HOME/Library/LaunchAgents/io.github.apple-music-discord-presence.plist"
 LOG_DIR="$HOME/Library/Logs/Apple Music Discord Presence"
 
-if [[ -z "$CLIENT_ID" ]]; then
-  echo "Paste your Discord Application ID, then press Return:"
-  read -r CLIENT_ID
-fi
-if [[ "$CLIENT_ID" != <-> ]] || (( ${#CLIENT_ID} < 17 || ${#CLIENT_ID} > 20 )); then
-  echo "The Discord Application ID must contain 17-20 digits."
-  read -k 1 "?Press any key to close."
-  exit 1
+if [[ ! -f "$CONFIG_FILE" ]]; then
+  if [[ -z "$CLIENT_ID" ]]; then
+    echo "Paste your Discord Application ID, then press Return:"
+    read -r CLIENT_ID
+  fi
+  if [[ "$CLIENT_ID" != <-> ]] || (( ${#CLIENT_ID} < 17 || ${#CLIENT_ID} > 20 )); then
+    echo "The Discord Application ID must contain 17-20 digits."
+    read -k 1 "?Press any key to close."
+    exit 1
+  fi
 fi
 
 mkdir -p "$CONFIG_DIR" "$HOME/Library/LaunchAgents" "$LOG_DIR"
-printf '{\n  "discordClientId": "%s",\n  "pollIntervalMs": 1000,\n  "showPaused": true,\n  "artwork": { "enabled": true, "country": "US" }\n}\n' "$CLIENT_ID" > "$CONFIG_FILE"
-chmod 600 "$CONFIG_FILE"
+if [[ ! -f "$CONFIG_FILE" ]]; then
+  printf '{\n  "discordClientId": "%s",\n  "pollIntervalMs": 1000,\n  "showPaused": true,\n  "presence": {\n    "showAlbum": true,\n    "showTimeRemaining": true,\n    "showButton": true,\n    "displayOrder": "artist-album"\n  },\n  "artwork": { "enabled": true, "country": "US" }\n}\n' "$CLIENT_ID" > "$CONFIG_FILE"
+  chmod 600 "$CONFIG_FILE"
+fi
 
 escape_xml() {
   local value="$1"

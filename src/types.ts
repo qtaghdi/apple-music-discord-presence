@@ -15,6 +15,12 @@ export interface AppConfig {
   discordClientId: string;
   pollIntervalMs: number;
   showPaused: boolean;
+  presence: {
+    showAlbum: boolean;
+    showTimeRemaining: boolean;
+    showButton: boolean;
+    displayOrder: "artist-album" | "album-artist";
+  };
   artwork: {
     enabled: boolean;
     country: string;
@@ -29,4 +35,13 @@ export interface DiscordActivity {
   timestamps?: { start: number; end: number };
   assets?: { large_image: string; large_text?: string };
   buttons?: Array<{ label: string; url: string }>;
+}
+
+export interface PresenceOptions {
+  showAlbum: boolean;
+  showArtwork: boolean;
+  showTimeRemaining: boolean;
+  showButton: boolean;
+  showPaused: boolean;
+  displayOrder: "artist-album" | "album-artist";
 }

@@ -22,7 +22,7 @@ cd "$ROOT_DIR"
 npm run build
 mkdir -p "$CONFIG_DIR" "$HOME/Library/LaunchAgents" "$LOG_DIR"
 if [[ ! -f "$CONFIG_FILE" ]]; then
-  printf '{\n  "discordClientId": "%s",\n  "pollIntervalMs": 1000,\n  "showPaused": true,\n  "artwork": { "enabled": true, "country": "US" }\n}\n' "$CLIENT_ID" > "$CONFIG_FILE"
+  printf '{\n  "discordClientId": "%s",\n  "pollIntervalMs": 1000,\n  "showPaused": true,\n  "presence": {\n    "showAlbum": true,\n    "showTimeRemaining": true,\n    "showButton": true,\n    "displayOrder": "artist-album"\n  },\n  "artwork": { "enabled": true, "country": "US" }\n}\n' "$CLIENT_ID" > "$CONFIG_FILE"
   chmod 600 "$CONFIG_FILE"
 fi
 
