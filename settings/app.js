@@ -2,6 +2,8 @@ const form = document.querySelector("#settings-form");
 const connectionState = document.querySelector("#connection-state");
 const saveMessage = document.querySelector("#save-message");
 const saveButton = form.querySelector("button[type='submit']");
+const previewPanel = document.querySelector(".preview-panel");
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 const preview = {
   artwork: document.querySelector("#preview-artwork"),
@@ -59,6 +61,20 @@ async function requestSettings(url, options) {
 form.addEventListener("change", () => {
   updatePreview();
   setMessage("Unsaved changes");
+});
+
+previewPanel.addEventListener("pointermove", (event) => {
+  if (reducedMotion.matches || window.innerWidth <= 900) return;
+  const bounds = previewPanel.getBoundingClientRect();
+  const x = (event.clientX - bounds.left) / bounds.width - 0.5;
+  const y = (event.clientY - bounds.top) / bounds.height - 0.5;
+  previewPanel.style.setProperty("--tilt-x", `${(-y * 2.4).toFixed(2)}deg`);
+  previewPanel.style.setProperty("--tilt-y", `${(x * 3).toFixed(2)}deg`);
+});
+
+previewPanel.addEventListener("pointerleave", () => {
+  previewPanel.style.removeProperty("--tilt-x");
+  previewPanel.style.removeProperty("--tilt-y");
 });
 
 form.addEventListener("submit", async (event) => {

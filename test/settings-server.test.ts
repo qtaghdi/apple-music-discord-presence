@@ -19,10 +19,13 @@ test("serves the local UI and saves same-origin settings", async () => {
   const root = await mkdtemp(join(tmpdir(), "amdp-settings-"));
   const assets = join(root, "settings");
   await mkdir(assets);
+  await mkdir(join(assets, "assets"));
   await Promise.all([
     writeFile(join(assets, "index.html"), "<h1>Settings</h1>"),
     writeFile(join(assets, "app.js"), ""),
     writeFile(join(assets, "styles.css"), ""),
+    writeFile(join(assets, "assets", "quiet-color-artwork.webp"), Buffer.from("RIFF")),
+    writeFile(join(assets, "assets", "quiet-color-backdrop.webp"), Buffer.from("RIFF")),
   ]);
   let current = initial;
   const server = new SettingsServer({
@@ -41,6 +44,8 @@ test("serves the local UI and saves same-origin settings", async () => {
     assert.equal(page.status, 200);
     assert.match(await page.text(), /Settings/);
     assert.match(page.headers.get("content-security-policy") ?? "", /default-src 'self'/);
+    const artwork = await fetch(`${server.origin}/assets/quiet-color-artwork.webp`);
+    assert.equal(artwork.headers.get("content-type"), "image/webp");
 
     const changed: DisplaySettings = { ...initial, showArtwork: false, displayOrder: "album-artist" };
     const saved = await fetch(`${server.origin}/api/settings`, {

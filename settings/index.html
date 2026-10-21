@@ -10,6 +10,13 @@
     <script src="/app.js" defer></script>
   </head>
   <body>
+    <div class="paint-backdrop" aria-hidden="true">
+      <span class="paint-shape shape-blue"></span>
+      <span class="paint-shape shape-lilac"></span>
+      <span class="paint-shape shape-rose"></span>
+      <span class="paint-shape shape-ink"></span>
+      <span class="paper-grain"></span>
+    </div>
     <header class="topbar">
       <a class="brand" href="/" aria-label="Apple Music Presence settings">
         <span class="brand-mark" aria-hidden="true">♪</span>
@@ -19,14 +26,12 @@
     </header>
 
     <main class="shell">
-      <section class="intro" aria-labelledby="page-title">
-        <p class="eyebrow">DISPLAY SETTINGS</p>
-        <h1 id="page-title">Make it feel like yours.</h1>
-        <p class="lede">Choose what appears in your Discord activity. Everything stays on this computer.</p>
-      </section>
-
       <div class="workspace">
         <form class="settings-panel" id="settings-form">
+          <section class="intro" aria-labelledby="page-title">
+            <h1 id="page-title">Make it feel like yours.</h1>
+            <p class="lede">Choose what appears in your Discord activity. Everything stays on this computer.</p>
+          </section>
           <div class="panel-heading">
             <div>
               <p class="panel-kicker">01</p>
@@ -86,13 +91,13 @@
               <p class="activity-label">LISTENING TO APPLE MUSIC</p>
               <div class="activity-body">
                 <div class="artwork" id="preview-artwork" aria-hidden="true">
-                  <span class="artwork-note">♪</span>
-                  <span class="artwork-glow"></span>
+                  <img src="/assets/quiet-color-artwork.webp" alt="">
                 </div>
                 <div class="activity-copy">
                   <strong>Midnight Signal</strong>
                   <span id="preview-line-one">Satellite Hearts</span>
                   <span id="preview-line-two">Neon Afterglow</span>
+                  <span class="track-progress" aria-hidden="true"><i></i></span>
                   <span id="preview-time">2:18 left</span>
                 </div>
               </div>

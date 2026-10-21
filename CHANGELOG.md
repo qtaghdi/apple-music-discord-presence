@@ -2,6 +2,20 @@
 
 All notable user-facing changes are recorded here. Release-specific download notes live in [`releases/`](releases/).
 
+## [0.4.1] - 2026-10-21
+
+### Added
+
+- A new quiet, painterly settings theme with muted blue, lavender, and dusty-pink color fields.
+- Subtle motion for background layers, status lights, artwork, progress, settings rows, buttons, and the Discord preview card.
+- Original abstract artwork for the built-in Discord preview.
+
+### Changed
+
+- Reworked the settings layout to keep the controls and preview visible together on desktop while preserving a clean mobile stack.
+- Added reduced-motion behavior so system accessibility preferences disable decorative animation and pointer tilt.
+- Compressed visual assets to WebP to keep release downloads small.
+
 ## [0.4.0] - 2026-10-21
 
 ### Added
@@ -75,6 +89,7 @@ All notable user-facing changes are recorded here. Release-specific download not
 - Direct Discord IPC, automatic reconnect, timestamps, seeks, and optional album artwork.
 - LaunchAgent installer, documentation, and unit tests.
 
+[0.4.1]: https://github.com/qtaghdi/apple-music-discord-presence/releases/tag/v0.4.1
 [0.4.0]: https://github.com/qtaghdi/apple-music-discord-presence/releases/tag/v0.4.0
 [0.3.0]: https://github.com/qtaghdi/apple-music-discord-presence/releases/tag/v0.3.0
 [0.2.0]: https://github.com/qtaghdi/apple-music-discord-presence/releases/tag/v0.2.0
