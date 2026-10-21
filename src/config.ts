@@ -3,8 +3,9 @@ import { homedir } from "node:os";
 import { join } from "node:path";
 import type { AppConfig } from "./types.js";
 
-type PartialConfig = Partial<Omit<AppConfig, "artwork">> & {
+type PartialConfig = Partial<Omit<AppConfig, "artwork" | "presence">> & {
   artwork?: Partial<AppConfig["artwork"]>;
+  presence?: Partial<AppConfig["presence"]>;
 };
 
 export function defaultConfigPaths(
@@ -36,11 +37,21 @@ export async function loadConfig(): Promise<AppConfig> {
   if (!discordClientId || !/^\d{17,20}$/.test(discordClientId)) {
     throw new Error("Set a valid discordClientId in config.json or DISCORD_CLIENT_ID.");
   }
+  const displayOrder = fileConfig.presence?.displayOrder ?? "artist-album";
+  if (displayOrder !== "artist-album" && displayOrder !== "album-artist") {
+    throw new Error('presence.displayOrder must be "artist-album" or "album-artist".');
+  }
 
   return {
     discordClientId,
     pollIntervalMs: Math.max(250, fileConfig.pollIntervalMs ?? 1000),
     showPaused: fileConfig.showPaused ?? true,
+    presence: {
+      showAlbum: fileConfig.presence?.showAlbum ?? true,
+      showTimeRemaining: fileConfig.presence?.showTimeRemaining ?? true,
+      showButton: fileConfig.presence?.showButton ?? true,
+      displayOrder,
+    },
     artwork: {
       enabled: fileConfig.artwork?.enabled ?? true,
       country: fileConfig.artwork?.country ?? "US",

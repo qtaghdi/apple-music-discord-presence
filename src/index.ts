@@ -27,9 +27,11 @@ async function main(): Promise<void> {
 
   const publish = () => {
     if (!latest || !discord.isReady()) return;
-    const activity = latest.state === "paused" && !config.showPaused
-      ? null
-      : createActivity(latest, latestArtwork, config.fallbackLargeImageKey);
+    const activity = createActivity(latest, latestArtwork, {
+      ...config.presence,
+      showArtwork: config.artwork.enabled,
+      showPaused: config.showPaused,
+    }, config.fallbackLargeImageKey);
     const signature = JSON.stringify(activity);
     if (signature === lastPresenceSignature) return;
     discord.setActivity(activity);
@@ -59,7 +61,7 @@ async function main(): Promise<void> {
       latestArtwork = undefined;
       const generation = ++artworkGeneration;
       publish();
-      if (config.artwork.enabled && nextTrackKey) {
+      if ((config.artwork.enabled || config.presence.showButton) && nextTrackKey) {
         void artworkResolver.resolve(snapshot).then((artwork) => {
           if (generation !== artworkGeneration) return;
           latestArtwork = artwork;
