@@ -6,7 +6,7 @@
     <meta name="description" content="Show what you're playing in Apple Music as rich, accurate Discord presence on macOS and Windows.">
     <meta name="theme-color" content="#0b0b10">
     <meta property="og:title" content="Apple Music Discord Presence">
-    <meta property="og:description" content="Your Apple Music, now playing on Discord. Local-first, resilient, and built for macOS and Windows.">
+    <meta property="og:description" content="Show your current Apple Music track on Discord. Available for macOS and Windows.">
     <meta property="og:type" content="website">
     <title>Apple Music Discord Presence</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -36,7 +36,7 @@
         <div class="hero-copy">
           <div class="eyebrow"><span></span> Built for macOS + Windows</div>
           <h1>Your Apple Music.<br><em>Now playing</em> on Discord.</h1>
-          <p class="hero-lede">Share the song, artist, album art, and live progress from Apple Music—without a bot, a relay server, or a fragile browser extension.</p>
+          <p class="hero-lede">Share the song, artist, album art, and live progress from Apple Music. No bot, relay server, or browser extension required.</p>
           <div class="hero-actions">
             <a class="button primary platform-download" href="https://github.com/qtaghdi/apple-music-discord-presence/releases/latest/download/apple-music-discord-presence-macos-arm64.zip">
               <span class="download-icon" aria-hidden="true">↓</span>
@@ -65,7 +65,7 @@
             <div class="discord-label"><span class="discord-dot"></span> LISTENING TO APPLE MUSIC</div>
             <div class="presence">
               <div class="presence-cover"><div></div><span>♫</span></div>
-              <div class="presence-copy"><strong>Midnight Signal</strong><span>Satellite Hearts — Neon Afterglow</span><small>2:18 left</small></div>
+              <div class="presence-copy"><strong>Midnight Signal</strong><span>Satellite Hearts · Neon Afterglow</span><small>2:18 left</small></div>
             </div>
           </div>
         </div>
@@ -93,8 +93,8 @@
           <div class="feature-list">
             <article><span>01</span><div><h3>Live track changes</h3><p>Titles, artists, albums, play state, and seeks update without restarting the app.</p></div></article>
             <article><span>02</span><div><h3>Accurate time remaining</h3><p>Presence timestamps stay aligned with the actual player position.</p></div></article>
-            <article><span>03</span><div><h3>Album art, gracefully</h3><p>Artwork is fetched directly from Apple when available and never blocks presence.</p></div></article>
-            <article><span>04</span><div><h3>Self-healing connection</h3><p>If Discord restarts, the local client reconnects and restores your activity automatically.</p></div></article>
+            <article><span>03</span><div><h3>Optional album art</h3><p>Artwork comes from Apple's public catalog when available. Presence still works without it.</p></div></article>
+            <article><span>04</span><div><h3>Automatic reconnection</h3><p>If Discord restarts, the app reconnects and restores your activity automatically.</p></div></article>
           </div>
         </div>
       </section>
@@ -107,7 +107,7 @@
         <div class="platform-grid">
           <article class="platform-card mac-card reveal">
             <div class="platform-symbol">⌘</div>
-            <div><span class="availability">Available now</span><h3>macOS</h3><p>A tiny Swift ScriptingBridge helper reads Music directly—no JXA, no Deno, no intermediary server.</p></div>
+            <div><span class="availability">Available now</span><h3>macOS</h3><p>A small Swift helper reads Music directly through ScriptingBridge. It does not use JXA, Deno, or an intermediary server.</p></div>
             <a href="https://github.com/qtaghdi/apple-music-discord-presence/releases/latest/download/apple-music-discord-presence-macos-arm64.zip">Download Apple Silicon ZIP <span>↓</span></a>
           </article>
           <article class="platform-card windows-card reveal">

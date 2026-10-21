@@ -34,7 +34,7 @@ async function main(): Promise<void> {
     if (signature === lastPresenceSignature) return;
     discord.setActivity(activity);
     lastPresenceSignature = signature;
-    log(activity ? `${latest.state}: ${latest.artist ?? "Unknown artist"} — ${latest.name}` : "Presence cleared");
+    log(activity ? `${latest.state}: ${latest.artist ?? "Unknown artist"} · ${latest.name}` : "Presence cleared");
   };
 
   discord.on("ready", () => {

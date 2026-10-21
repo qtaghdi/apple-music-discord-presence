@@ -18,7 +18,7 @@ export function createActivity(
   const activity: DiscordActivity = {
     type: 2,
     details: limit(track.name),
-    state: limit(track.album ? `${artist} — ${track.album}` : artist),
+    state: limit(track.album ? `${artist} · ${track.album}` : artist),
   };
 
   if (track.state === "playing" && track.duration && track.position !== undefined) {
