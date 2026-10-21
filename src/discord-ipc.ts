@@ -2,7 +2,7 @@ import { EventEmitter } from "node:events";
 import { randomUUID } from "node:crypto";
 import { connect, type Socket } from "node:net";
 import { tmpdir } from "node:os";
-import { join } from "node:path";
+import { posix } from "node:path";
 import type { DiscordActivity } from "./types.js";
 
 const OP_HANDSHAKE = 0;
@@ -36,7 +36,7 @@ export function ipcPaths(
     "/tmp",
   ].filter((value): value is string => Boolean(value));
   return [...new Set(directories)].flatMap((directory) =>
-    Array.from({ length: 10 }, (_, index) => join(directory, `discord-ipc-${index}`)),
+    Array.from({ length: 10 }, (_, index) => posix.join(directory, `discord-ipc-${index}`)),
   );
 }
 

@@ -1,7 +1,7 @@
 import { EventEmitter } from "node:events";
 import { spawn, type ChildProcessByStdio } from "node:child_process";
 import { existsSync } from "node:fs";
-import { dirname, join } from "node:path";
+import { dirname, join, posix, win32 } from "node:path";
 import type { Readable } from "node:stream";
 import { fileURLToPath } from "node:url";
 import type { MusicSnapshot } from "./types.js";
@@ -74,13 +74,13 @@ export function musicHelperCommand(
   environment: NodeJS.ProcessEnv = process.env,
 ): { command: string; args: string[]; helper: string } {
   if (platform === "win32") {
-    const helper = environment.MUSIC_METADATA_HELPER ?? join(root, "native", "MusicMetadata.ps1");
+    const helper = environment.MUSIC_METADATA_HELPER ?? win32.join(root, "native", "MusicMetadata.ps1");
     return {
       command: environment.POWERSHELL_EXE ?? "powershell.exe",
       args: ["-NoLogo", "-NoProfile", "-NonInteractive", "-ExecutionPolicy", "Bypass", "-File", helper, "-IntervalMs", String(intervalMs)],
       helper,
     };
   }
-  const helper = environment.MUSIC_METADATA_HELPER ?? join(root, "bin", "music-metadata");
+  const helper = environment.MUSIC_METADATA_HELPER ?? posix.join(root, "bin", "music-metadata");
   return { command: helper, args: ["--interval-ms", String(intervalMs)], helper };
 }
