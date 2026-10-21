@@ -40,6 +40,13 @@ npm run verify
 
 Update `README.md` whenever installation, permissions, configuration, or troubleshooting behavior changes. Document any step that users must perform outside the app.
 
+For every versioned release:
+
+- Update `CHANGELOG.md` with the release date and user-facing changes.
+- Copy `releases/TEMPLATE.md` to `releases/vX.Y.Z.md`, complete it, and delete empty sections.
+- Keep `package.json` and `package-lock.json` versions aligned with the tag.
+- Do not push the release tag until its note file is committed; the release workflow intentionally fails when it is missing.
+
 ## Git
 
 - Use focused commits with imperative subjects.
