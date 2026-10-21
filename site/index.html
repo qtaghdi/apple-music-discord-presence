@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Show what you're playing in Apple Music as rich, accurate Discord presence on macOS and Windows.">
-    <meta name="theme-color" content="#0b0b10">
+    <meta name="theme-color" content="#09152d">
     <meta property="og:title" content="Apple Music Discord Presence">
     <meta property="og:description" content="Show your current Apple Music track on Discord. Available for macOS and Windows.">
     <meta property="og:type" content="website">
@@ -20,25 +20,26 @@
     <header class="nav-wrap">
       <nav class="nav" aria-label="Primary navigation">
         <a class="brand" href="#top" aria-label="Apple Music Discord Presence home">
-          <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="brand-mark" aria-hidden="true">♪</span>
           <span>AM Presence</span>
         </a>
         <div class="nav-links">
           <a href="#features">Features</a>
           <a href="#setup">Setup</a>
           <a href="https://github.com/qtaghdi/apple-music-discord-presence">GitHub</a>
+          <a class="nav-download" href="#download">Download</a>
         </div>
       </nav>
     </header>
 
     <main id="main">
       <section class="hero" id="top">
-        <div class="hero-glow glow-one"></div>
-        <div class="hero-glow glow-two"></div>
+        <div class="paint-shape hero-shape-one" aria-hidden="true"></div>
+        <div class="paint-shape hero-shape-two" aria-hidden="true"></div>
+        <div class="paint-leaf hero-leaf" aria-hidden="true"></div>
         <div class="hero-copy">
-          <div class="eyebrow"><span></span> Built for macOS + Windows</div>
-          <h1>Your Apple Music.<br><em>Now playing</em> on Discord.</h1>
-          <p class="hero-lede">Share the song, artist, album art, and live progress from Apple Music. No bot, relay server, or browser extension required.</p>
+          <h1>Your music,<br><em>present.</em></h1>
+          <p class="hero-lede">Show what you’re listening to on Apple Music in your Discord activity. It runs quietly and locally on your computer.</p>
           <div class="hero-actions">
             <a class="button primary platform-download" href="https://github.com/qtaghdi/apple-music-discord-presence/releases/latest/download/apple-music-discord-presence-macos-arm64.zip">
               <span class="download-icon" aria-hidden="true">↓</span>
@@ -55,9 +56,7 @@
           <div class="music-window">
             <div class="window-top"><span></span><span></span><span></span><b>Apple Music</b></div>
             <div class="cover-art">
-              <div class="cover-sun"></div>
-              <div class="cover-horizon"></div>
-              <span>NEON<br>AFTERGLOW</span>
+              <span class="sr-only">Abstract blue, lavender, and pink album artwork</span>
             </div>
             <div class="track-meta"><strong>Midnight Signal</strong><span>Satellite Hearts</span></div>
             <div class="progress"><i></i></div>
@@ -136,7 +135,6 @@
       <section class="download-cta" id="download" data-animate>
         <div class="cta-noise" aria-hidden="true"></div>
         <div class="cta-content reveal">
-          <p class="kicker">Ready when your next track starts</p>
           <h2>Let Discord hear<br>what you hear.</h2>
           <p>Free, open source, and local-first.</p>
           <div class="download-grid">
@@ -153,7 +151,7 @@
     </main>
 
     <footer>
-      <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span>AM Presence</span></a>
+      <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true">♪</span><span>AM Presence</span></a>
       <p>Independent open-source software. Not affiliated with Apple or Discord.</p>
       <a href="https://github.com/qtaghdi/apple-music-discord-presence">GitHub <span aria-hidden="true">↗</span></a>
     </footer>
