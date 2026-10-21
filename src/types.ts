@@ -32,7 +32,7 @@ export interface DiscordActivity {
   type: 2;
   details: string;
   state: string;
-  timestamps?: { start: number; end: number };
+  timestamps?: { start: number; end?: number };
   assets?: { large_image: string; large_text?: string };
   buttons?: Array<{ label: string; url: string }>;
 }

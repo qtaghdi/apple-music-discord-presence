@@ -21,8 +21,8 @@ After extracting the ZIP, keep its folder somewhere permanent and run `Install.c
 - On Windows 10/11, a PowerShell helper reads Apple Music through Windows Global System Media Transport Controls.
 - Direct Discord IPC supports Unix sockets on macOS and named pipes on Windows, including all slots from `discord-ipc-0` through `discord-ipc-9`.
 - Reconnect backoff and activity replay survive Discord restarts.
-- Track changes, play/pause transitions, seeks, and accurate start/end timestamps are handled.
-- Album details, artwork, time remaining, pause state, the Apple Music button, and metadata order are configurable.
+- Track changes, play/pause transitions, seeks, and an accurate elapsed timestamp are handled.
+- Album details, artwork, playback progress, pause state, the Apple Music button, and metadata order are configurable.
 - A private, local settings screen includes a live Discord preview and applies changes without restarting.
 - Optional artwork comes directly from Apple's public iTunes Search API and never blocks text presence.
 - There are no runtime npm dependencies, remote relay, analytics, bot token, client secret, or Discord OAuth login.
@@ -71,7 +71,7 @@ Remove it with `npm run uninstall-agent`. The repository must remain at the same
 
 ### Local settings screen
 
-ZIP installations include `Settings.command` on macOS and `Settings.cmd` on Windows. The launcher opens a settings page served only from `127.0.0.1` while the app is running. It can change album details, artwork, time remaining, the Apple Music button, paused activity, and artist/album ordering. Saving updates the current Discord activity immediately.
+ZIP installations include `Settings.command` on macOS and `Settings.cmd` on Windows. The launcher opens a settings page served only from `127.0.0.1` while the app is running. It can change album details, artwork, playback progress, the Apple Music button, paused activity, and artist/album ordering. Saving updates the current Discord activity immediately.
 
 The settings page never exposes or changes the Discord Application ID. It has no external server, account, analytics, or internet-facing listener.
 
@@ -107,7 +107,7 @@ Presence options:
 | --- | --- |
 | `showPaused` | Keep the current track visible while playback is paused. |
 | `presence.showAlbum` | Include the album name next to the artist and in the artwork tooltip. |
-| `presence.showTimeRemaining` | Show Discord's live playback timestamps. |
+| `presence.showTimeRemaining` | Show Discord's elapsed playback timer, starting at the current song position. |
 | `presence.showButton` | Add the **Listen on Apple Music** button when a catalog match is found. |
 | `presence.displayOrder` | Use `artist-album` for `Artist · Album` or `album-artist` for `Album · Artist`. |
 | `artwork.enabled` | Show album artwork when a catalog match is found. |

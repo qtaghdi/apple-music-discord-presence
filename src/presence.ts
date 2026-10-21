@@ -42,7 +42,6 @@ export function createActivity(
     const position = Math.max(0, Math.min(track.duration, track.position));
     activity.timestamps = {
       start: now - Math.floor(position),
-      end: now + Math.max(0, Math.ceil(track.duration - position)),
     };
   }
 
