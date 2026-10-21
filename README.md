@@ -13,7 +13,7 @@ The release ZIPs include a private Node.js runtime, so end users do not need to 
 - [Download for Windows x64](https://github.com/qtaghdi/apple-music-discord-presence/releases/latest/download/apple-music-discord-presence-windows-x64.zip)
 - [Open the product website](https://qtaghdi.github.io/apple-music-discord-presence/)
 
-After extracting the ZIP, keep its folder somewhere permanent and run `Install.command` on macOS or `Install.cmd` on Windows. The installer asks for a Discord Application ID once and configures login startup.
+After extracting the ZIP, keep its folder somewhere permanent and run `Install.command` on macOS or `Install.cmd` on Windows. The installer asks for a Discord Application ID once and configures login startup. Open `Settings.command` on macOS or `Settings.cmd` on Windows whenever you want to customize the activity.
 
 ## Why this implementation
 
@@ -23,6 +23,7 @@ After extracting the ZIP, keep its folder somewhere permanent and run `Install.c
 - Reconnect backoff and activity replay survive Discord restarts.
 - Track changes, play/pause transitions, seeks, and accurate start/end timestamps are handled.
 - Album details, artwork, time remaining, pause state, the Apple Music button, and metadata order are configurable.
+- A private, local settings screen includes a live Discord preview and applies changes without restarting.
 - Optional artwork comes directly from Apple's public iTunes Search API and never blocks text presence.
 - There are no runtime npm dependencies, remote relay, analytics, bot token, client secret, or Discord OAuth login.
 
@@ -68,6 +69,14 @@ Remove it with `npm run uninstall-agent`. The repository must remain at the same
 
 ## Configuration
 
+### Local settings screen
+
+ZIP installations include `Settings.command` on macOS and `Settings.cmd` on Windows. The launcher opens a settings page served only from `127.0.0.1` while the app is running. It can change album details, artwork, time remaining, the Apple Music button, paused activity, and artist/album ordering. Saving updates the current Discord activity immediately.
+
+The settings page never exposes or changes the Discord Application ID. It has no external server, account, analytics, or internet-facing listener.
+
+### Advanced configuration
+
 The app reads `AMDP_CONFIG` first, then the platform config:
 
 - macOS: `~/Library/Application Support/Apple Music Discord Presence/config.json`
@@ -103,7 +112,7 @@ Presence options:
 | `presence.displayOrder` | Use `artist-album` for `Artist · Album` or `album-artist` for `Album · Artist`. |
 | `artwork.enabled` | Show album artwork when a catalog match is found. |
 
-Restart the app after changing `config.json`. ZIP installations include `Restart.command` on macOS and `Restart.cmd` on Windows. Installers preserve an existing configuration during upgrades.
+Restart the app after manually changing `config.json`. Settings saved through the local screen apply immediately. ZIP installations include `Restart.command` on macOS and `Restart.cmd` on Windows. Installers preserve an existing configuration during upgrades.
 
 `fallbackLargeImageKey` is optional. If used, upload an image with that key under the Discord application's Rich Presence art assets.
 
@@ -116,6 +125,12 @@ Restart the app after changing `config.json`. ZIP installations include `Restart
 - Confirm the Application ID is numeric, not a client secret or bot token.
 - Quit Discord completely and reopen it. The app reconnects automatically within 30 seconds.
 - Temporarily stop other Rich Presence tools while testing.
+
+### Settings screen does not open
+
+- Run `Install.command` or `Install.cmd` first. If the app was already installed, run the included restart helper and try again.
+- The settings page is available only on this computer at `http://127.0.0.1:47621` while the background app is running.
+- Check the platform log for another program already using port `47621`.
 
 ### macOS metadata or permission problem
 

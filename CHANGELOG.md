@@ -2,6 +2,26 @@
 
 All notable user-facing changes are recorded here. Release-specific download notes live in [`releases/`](releases/).
 
+## [0.4.0] - 2026-10-21
+
+### Added
+
+- A local graphical settings screen with a live Discord activity preview.
+- One-click `Settings.command` and `Settings.cmd` launchers in the macOS and Windows ZIPs.
+- Immediate activity updates after saving album, artwork, timestamp, button, paused-state, or metadata-order preferences.
+
+### Changed
+
+- Display settings can now be changed without editing JSON or restarting the app.
+- The settings service listens only on `127.0.0.1`, accepts same-origin updates, and preserves advanced configuration such as the Discord Application ID.
+- Expanded automated coverage from sixteen to nineteen tests, including local-server access and safe configuration writes.
+
+### Known limitations
+
+- A Discord Application ID must still be entered during first installation until a shared project ID is embedded.
+- Windows end-to-end playback testing requires an interactive Windows desktop with Apple Music and Discord signed in.
+- macOS downloads are not signed or notarized, so the first launch may require **Right-click → Open**.
+
 ## [0.3.0] - 2026-10-21
 
 ### Added
@@ -55,6 +75,7 @@ All notable user-facing changes are recorded here. Release-specific download not
 - Direct Discord IPC, automatic reconnect, timestamps, seeks, and optional album artwork.
 - LaunchAgent installer, documentation, and unit tests.
 
+[0.4.0]: https://github.com/qtaghdi/apple-music-discord-presence/releases/tag/v0.4.0
 [0.3.0]: https://github.com/qtaghdi/apple-music-discord-presence/releases/tag/v0.3.0
 [0.2.0]: https://github.com/qtaghdi/apple-music-discord-presence/releases/tag/v0.2.0
 [0.1.0]: https://github.com/qtaghdi/apple-music-discord-presence/commits/9ebfbfc

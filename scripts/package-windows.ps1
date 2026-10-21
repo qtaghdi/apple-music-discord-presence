@@ -11,6 +11,7 @@ New-Item -ItemType Directory -Force -Path (Join-Path $packageDirectory "native")
 Copy-Item (Get-Command node).Source (Join-Path $packageDirectory "runtime\node.exe")
 New-Item -ItemType Directory -Force -Path (Join-Path $packageDirectory "dist") | Out-Null
 Copy-Item -Recurse (Join-Path $root "dist\src") (Join-Path $packageDirectory "dist\src")
+Copy-Item -Recurse (Join-Path $root "settings") (Join-Path $packageDirectory "settings")
 Copy-Item (Join-Path $root "native\MusicMetadata.ps1") (Join-Path $packageDirectory "native\MusicMetadata.ps1")
 Copy-Item (Join-Path $root "config.example.json"), (Join-Path $root "LICENSE") $packageDirectory
 Copy-Item (Join-Path $root "packaging\windows\README.txt") (Join-Path $packageDirectory "README.txt")

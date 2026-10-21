@@ -45,3 +45,12 @@ export interface PresenceOptions {
   showPaused: boolean;
   displayOrder: "artist-album" | "album-artist";
 }
+
+export interface DisplaySettings {
+  showAlbum: boolean;
+  showArtwork: boolean;
+  showTimeRemaining: boolean;
+  showButton: boolean;
+  showPaused: boolean;
+  displayOrder: "artist-album" | "album-artist";
+}

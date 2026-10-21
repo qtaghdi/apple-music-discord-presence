@@ -10,7 +10,10 @@ login startup. No Node.js installation is required.
 
 CUSTOMIZATION
 
-Edit this file, then double-click Restart.command to apply the changes:
+Double-click Settings.command to open the local settings screen. Changes are
+saved immediately and do not require a restart.
+
+For advanced settings, edit this file and then run Restart.command:
 ~/Library/Application Support/Apple Music Discord Presence/config.json
 
 - showPaused: show or hide paused tracks

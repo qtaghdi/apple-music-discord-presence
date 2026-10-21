@@ -1,13 +1,13 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { mkdtemp, rm, writeFile } from "node:fs/promises";
+import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { loadConfig } from "../src/config.js";
+import { loadConfig, parseDisplaySettings, saveDisplaySettings } from "../src/config.js";
 
 async function withConfig(
   contents: object,
-  run: () => Promise<void>,
+  run: (path: string) => Promise<void>,
 ): Promise<void> {
   const directory = await mkdtemp(join(tmpdir(), "amdp-config-"));
   const path = join(directory, "config.json");
@@ -17,7 +17,7 @@ async function withConfig(
   process.env.AMDP_CONFIG = path;
   delete process.env.DISCORD_CLIENT_ID;
   try {
-    await run();
+    await run(path);
   } finally {
     if (previousPath === undefined) delete process.env.AMDP_CONFIG;
     else process.env.AMDP_CONFIG = previousPath;
@@ -71,5 +71,42 @@ test("rejects an unknown display order", async () => {
     presence: { displayOrder: "title-first" },
   }, async () => {
     await assert.rejects(loadConfig(), /presence\.displayOrder/);
+  });
+});
+
+test("validates settings submitted by the local UI", () => {
+  assert.throws(() => parseDisplaySettings({}), /showAlbum/);
+  assert.throws(() => parseDisplaySettings({
+    showAlbum: true,
+    showArtwork: true,
+    showTimeRemaining: true,
+    showButton: true,
+    showPaused: true,
+    displayOrder: "title-first",
+  }), /displayOrder/);
+});
+
+test("saves display settings without changing advanced configuration", async () => {
+  await withConfig({
+    discordClientId: "123456789012345678",
+    pollIntervalMs: 2500,
+    fallbackLargeImageKey: "apple_music",
+    artwork: { enabled: true, country: "KR" },
+  }, async (path) => {
+    const config = await saveDisplaySettings({
+      showAlbum: false,
+      showArtwork: false,
+      showTimeRemaining: false,
+      showButton: false,
+      showPaused: false,
+      displayOrder: "album-artist",
+    });
+    const saved = JSON.parse(await readFile(path, "utf8")) as Record<string, unknown>;
+    assert.equal(saved.discordClientId, "123456789012345678");
+    assert.equal(saved.pollIntervalMs, 2500);
+    assert.equal(saved.fallbackLargeImageKey, "apple_music");
+    assert.deepEqual(saved.artwork, { enabled: false, country: "KR" });
+    assert.equal(config.presence.displayOrder, "album-artist");
+    assert.equal(config.showPaused, false);
   });
 });
