@@ -1,0 +1,9 @@
+{
+  "discordClientId": "YOUR_DISCORD_APPLICATION_ID",
+  "pollIntervalMs": 1000,
+  "showPaused": true,
+  "artwork": {
+    "enabled": true,
+    "country": "KR"
+  }
+}
