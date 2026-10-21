@@ -56,4 +56,5 @@ plutil -lint "$PLIST" >/dev/null
 launchctl bootout "gui/$(id -u)/io.github.apple-music-discord-presence" 2>/dev/null || true
 launchctl bootstrap "gui/$(id -u)" "$PLIST"
 echo "Installed. Start Apple Music and Discord, then allow Music automation if macOS asks."
+echo "Double-click Settings.command whenever you want to customize the activity."
 read -k 1 "?Press any key to close."

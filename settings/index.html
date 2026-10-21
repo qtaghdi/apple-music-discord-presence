@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark">
+    <meta name="theme-color" content="#0b0b10">
+    <title>Apple Music Presence Settings</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Apple Music Presence settings">
+        <span class="brand-mark" aria-hidden="true">♪</span>
+        <span>Apple Music Presence</span>
+      </a>
+      <span class="local-badge"><i aria-hidden="true"></i> Local settings</span>
+    </header>
+
+    <main class="shell">
+      <section class="intro" aria-labelledby="page-title">
+        <p class="eyebrow">DISPLAY SETTINGS</p>
+        <h1 id="page-title">Make it feel like yours.</h1>
+        <p class="lede">Choose what appears in your Discord activity. Everything stays on this computer.</p>
+      </section>
+
+      <div class="workspace">
+        <form class="settings-panel" id="settings-form">
+          <div class="panel-heading">
+            <div>
+              <p class="panel-kicker">01</p>
+              <h2>Activity details</h2>
+            </div>
+            <span class="connection" id="connection-state">Connecting</span>
+          </div>
+
+          <div class="setting-list">
+            <label class="setting-row">
+              <span><strong>Album name</strong><small>Show the album under the artist.</small></span>
+              <input type="checkbox" name="showAlbum"><i class="switch" aria-hidden="true"></i>
+            </label>
+            <label class="setting-row">
+              <span><strong>Album artwork</strong><small>Use artwork from Apple’s public catalog.</small></span>
+              <input type="checkbox" name="showArtwork"><i class="switch" aria-hidden="true"></i>
+            </label>
+            <label class="setting-row">
+              <span><strong>Time remaining</strong><small>Keep Discord’s timer aligned with playback.</small></span>
+              <input type="checkbox" name="showTimeRemaining"><i class="switch" aria-hidden="true"></i>
+            </label>
+            <label class="setting-row">
+              <span><strong>Open in Apple Music</strong><small>Add a button when a catalog match is available.</small></span>
+              <input type="checkbox" name="showButton"><i class="switch" aria-hidden="true"></i>
+            </label>
+            <label class="setting-row">
+              <span><strong>Show while paused</strong><small>Keep the activity visible when music is paused.</small></span>
+              <input type="checkbox" name="showPaused"><i class="switch" aria-hidden="true"></i>
+            </label>
+          </div>
+
+          <fieldset class="order-field">
+            <legend>Detail order</legend>
+            <div class="segments">
+              <label><input type="radio" name="displayOrder" value="artist-album"><span>Artist, then album</span></label>
+              <label><input type="radio" name="displayOrder" value="album-artist"><span>Album, then artist</span></label>
+            </div>
+          </fieldset>
+
+          <div class="actions">
+            <p class="save-message" id="save-message" aria-live="polite">Changes update your activity right away.</p>
+            <button class="save-button" type="submit">Save changes</button>
+          </div>
+        </form>
+
+        <aside class="preview-panel" aria-labelledby="preview-title">
+          <div class="panel-heading">
+            <div>
+              <p class="panel-kicker">02</p>
+              <h2 id="preview-title">Discord preview</h2>
+            </div>
+            <span class="live-badge"><i aria-hidden="true"></i> Live preview</span>
+          </div>
+
+          <div class="discord-stage">
+            <article class="discord-card">
+              <p class="activity-label">LISTENING TO APPLE MUSIC</p>
+              <div class="activity-body">
+                <div class="artwork" id="preview-artwork" aria-hidden="true">
+                  <span class="artwork-note">♪</span>
+                  <span class="artwork-glow"></span>
+                </div>
+                <div class="activity-copy">
+                  <strong>Midnight Signal</strong>
+                  <span id="preview-line-one">Satellite Hearts</span>
+                  <span id="preview-line-two">Neon Afterglow</span>
+                  <span id="preview-time">2:18 left</span>
+                </div>
+              </div>
+              <button class="discord-button" id="preview-button" type="button" tabindex="-1">Listen on Apple Music</button>
+            </article>
+            <p class="preview-note">Preview track details are examples. Your activity uses the song currently playing.</p>
+          </div>
+        </aside>
+      </div>
+    </main>
+  </body>
+</html>

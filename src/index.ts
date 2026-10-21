@@ -1,10 +1,13 @@
 #!/usr/bin/env node
 import { ArtworkResolver, type ArtworkResult } from "./artwork.js";
-import { loadConfig } from "./config.js";
+import { displaySettingsFromConfig, loadConfig, saveDisplaySettings } from "./config.js";
 import { DiscordIpc } from "./discord-ipc.js";
 import { MusicWatcher } from "./music.js";
 import { createActivity, trackKey } from "./presence.js";
+import { SettingsServer } from "./settings-server.js";
 import type { MusicSnapshot } from "./types.js";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 
 const stamp = () => new Date().toISOString();
 const log = (message: string) => console.log(`[${stamp()}] ${message}`);
@@ -13,7 +16,8 @@ async function main(): Promise<void> {
   if (process.platform !== "darwin" && process.platform !== "win32") {
     throw new Error("This application requires macOS or Windows.");
   }
-  const config = await loadConfig();
+  let config = await loadConfig();
+  const root = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
   const discord = new DiscordIpc(config.discordClientId);
   const music = new MusicWatcher(config.pollIntervalMs);
   const artworkResolver = new ArtworkResolver(config.artwork.country);
@@ -39,6 +43,34 @@ async function main(): Promise<void> {
     log(activity ? `${latest.state}: ${latest.artist ?? "Unknown artist"} · ${latest.name}` : "Presence cleared");
   };
 
+  const resolveArtwork = (snapshot: MusicSnapshot, generation: number) => {
+    if (!config.artwork.enabled && !config.presence.showButton) return;
+    void artworkResolver.resolve(snapshot).then((artwork) => {
+      if (generation !== artworkGeneration) return;
+      latestArtwork = artwork;
+      lastPresenceSignature = "";
+      publish();
+    });
+  };
+
+  const settingsServer = new SettingsServer({
+    root,
+    getSettings: () => displaySettingsFromConfig(config),
+    saveSettings: async (settings) => {
+      config = await saveDisplaySettings(settings);
+      lastPresenceSignature = "";
+      publish();
+      if (latest && !latestArtwork) resolveArtwork(latest, artworkGeneration);
+      return displaySettingsFromConfig(config);
+    },
+  });
+  try {
+    await settingsServer.start();
+    log(`Settings available at ${settingsServer.origin}`);
+  } catch (error) {
+    console.error(`[${stamp()}] Settings unavailable: ${error instanceof Error ? error.message : String(error)}`);
+  }
+
   discord.on("ready", () => {
     log("Connected to Discord");
     lastPresenceSignature = "";
@@ -61,14 +93,7 @@ async function main(): Promise<void> {
       latestArtwork = undefined;
       const generation = ++artworkGeneration;
       publish();
-      if ((config.artwork.enabled || config.presence.showButton) && nextTrackKey) {
-        void artworkResolver.resolve(snapshot).then((artwork) => {
-          if (generation !== artworkGeneration) return;
-          latestArtwork = artwork;
-          lastPresenceSignature = "";
-          publish();
-        });
-      }
+      if (nextTrackKey) resolveArtwork(snapshot, generation);
     } else {
       const stateChanged = prior?.state !== snapshot.state;
       const elapsed = (observedAt - priorObservedAt) / 1000;
@@ -86,6 +111,7 @@ async function main(): Promise<void> {
 
   const shutdown = () => {
     music.stop();
+    settingsServer.stop();
     if (discord.isReady()) discord.setActivity(null);
     discord.stop();
     setTimeout(() => process.exit(0), 50).unref();

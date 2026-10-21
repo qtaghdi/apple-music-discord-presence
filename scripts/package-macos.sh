@@ -11,10 +11,11 @@ mkdir -p "$PACKAGE_DIR/runtime/bin" "$PACKAGE_DIR/bin"
 cp "$(command -v node)" "$PACKAGE_DIR/runtime/bin/node"
 mkdir -p "$PACKAGE_DIR/dist"
 cp -R "$ROOT_DIR/dist/src" "$PACKAGE_DIR/dist/src"
+cp -R "$ROOT_DIR/settings" "$PACKAGE_DIR/settings"
 cp "$ROOT_DIR/bin/music-metadata" "$PACKAGE_DIR/bin/music-metadata"
 cp "$ROOT_DIR/config.example.json" "$ROOT_DIR/LICENSE" "$PACKAGE_DIR/"
 cp "$ROOT_DIR/packaging/macos/README.txt" "$PACKAGE_DIR/README.txt"
-cp "$ROOT_DIR/packaging/macos/Start.command" "$ROOT_DIR/packaging/macos/Install.command" "$ROOT_DIR/packaging/macos/Restart.command" "$ROOT_DIR/packaging/macos/Uninstall.command" "$PACKAGE_DIR/"
+cp "$ROOT_DIR/packaging/macos/Start.command" "$ROOT_DIR/packaging/macos/Install.command" "$ROOT_DIR/packaging/macos/Restart.command" "$ROOT_DIR/packaging/macos/Settings.command" "$ROOT_DIR/packaging/macos/Uninstall.command" "$PACKAGE_DIR/"
 chmod +x "$PACKAGE_DIR/runtime/bin/node" "$PACKAGE_DIR/bin/music-metadata" "$PACKAGE_DIR"/*.command
 (cd "$ROOT_DIR/release" && /usr/bin/zip -q -r -X "$ARCHIVE" "$PACKAGE_NAME")
 echo "$ARCHIVE"

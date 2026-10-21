@@ -36,3 +36,4 @@ $runKey = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run"
 New-ItemProperty -Path $runKey -Name "AppleMusicDiscordPresence" -Value $runCommand -PropertyType String -Force | Out-Null
 Start-Process powershell.exe -WindowStyle Hidden -ArgumentList @("-NoLogo", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "`"$startScript`"")
 Write-Host "Installed and started. Keep this folder in place."
+Write-Host "Double-click Settings.cmd whenever you want to customize the activity."
