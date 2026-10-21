@@ -47,6 +47,7 @@ jobs:
     needs: package
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v7
       - uses: actions/download-artifact@v8
         with:
           pattern: "*-package"
@@ -55,4 +56,7 @@ jobs:
       - name: Publish GitHub release
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release create "$GITHUB_REF_NAME" release-assets/*.zip --repo "$GITHUB_REPOSITORY" --title "Apple Music Discord Presence $GITHUB_REF_NAME" --generate-notes
+        run: |
+          NOTES_FILE="releases/$GITHUB_REF_NAME.md"
+          test -f "$NOTES_FILE"
+          gh release create "$GITHUB_REF_NAME" release-assets/*.zip --repo "$GITHUB_REPOSITORY" --title "Apple Music Discord Presence $GITHUB_REF_NAME" --notes-file "$NOTES_FILE"

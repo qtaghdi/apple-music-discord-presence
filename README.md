@@ -124,6 +124,8 @@ npm run verify
 
 The CI workflow verifies TypeScript and tests on macOS and Windows, plus the native arm64 helper on macOS. Tags matching `v*` produce self-contained ZIPs and publish a GitHub Release. GitHub Pages deploys the static site from `site/`.
 
+Each tag requires a curated `releases/vX.Y.Z.md` note based on `releases/TEMPLATE.md`. User-facing changes are also accumulated in [`CHANGELOG.md`](CHANGELOG.md).
+
 Full Music-to-Discord integration tests remain manual because they need an interactive desktop session, signed-in apps, a real Application ID, and macOS Automation permission where applicable.
 
 ## Privacy
