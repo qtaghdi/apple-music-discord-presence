@@ -1,5 +1,7 @@
 # Apple Music Discord Presence
 
+[![CI](https://github.com/qtaghdi/apple-music-discord-presence/actions/workflows/ci.yml/badge.svg)](https://github.com/qtaghdi/apple-music-discord-presence/actions/workflows/ci.yml)
+
 Show the track playing in the macOS Music app as Discord Rich Presence. This is a new, independent implementation for Apple Silicon Macs; it does not modify or redistribute code from the earlier projects that inspired it.
 
 ## Why this implementation
