@@ -3,6 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "description": "Apple Music Rich Presence for Discord on macOS",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qtaghdi/apple-music-discord-presence.git"
+  },
+  "homepage": "https://github.com/qtaghdi/apple-music-discord-presence#readme",
+  "bugs": {
+    "url": "https://github.com/qtaghdi/apple-music-discord-presence/issues"
+  },
   "type": "module",
   "engines": {
     "node": ">=20"
