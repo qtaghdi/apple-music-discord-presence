@@ -14,10 +14,25 @@ test("creates listening activity with timestamps and artwork", () => {
       type: 2,
       details: "Song",
       state: "Artist · Album",
-      timestamps: { start: 1_699_999_960, end: 1_700_000_200 },
+      timestamps: { start: 1_699_999_960 },
       assets: { large_image: "https://example.com/art.jpg", large_text: "Album" },
       buttons: [{ label: "Listen on Apple Music", url: "https://music.apple.com/track" }],
     });
+  } finally {
+    Date.now = originalNow;
+  }
+});
+
+test("uses an elapsed timer instead of a remaining-time countdown", () => {
+  const originalNow = Date.now;
+  Date.now = () => 1_700_000_000_000;
+  try {
+    const activity = createActivity(
+      { state: "playing", name: "Song", duration: 138, position: 79 },
+      undefined,
+    );
+    assert.deepEqual(activity?.timestamps, { start: 1_699_999_921 });
+    assert.equal(activity?.timestamps?.end, undefined);
   } finally {
     Date.now = originalNow;
   }

@@ -2,6 +2,19 @@
 
 All notable user-facing changes are recorded here. Release-specific download notes live in [`releases/`](releases/).
 
+## [0.4.2] - 2026-10-21
+
+### Changed
+
+- Discord now receives only the track start timestamp, producing an elapsed-time counter instead of a remaining-time countdown.
+- The settings preview now shows the current position and total duration together, such as `1:19 / 2:18`.
+- Renamed the visible setting from “Time remaining” to “Playback progress” while keeping existing configuration files compatible.
+
+### Fixed
+
+- Turning off playback progress now hides both the timer text and preview progress bar.
+- Added a regression test to prevent the Discord end timestamp from returning.
+
 ## [0.4.1] - 2026-10-21
 
 ### Added
@@ -89,6 +102,7 @@ All notable user-facing changes are recorded here. Release-specific download not
 - Direct Discord IPC, automatic reconnect, timestamps, seeks, and optional album artwork.
 - LaunchAgent installer, documentation, and unit tests.
 
+[0.4.2]: https://github.com/qtaghdi/apple-music-discord-presence/releases/tag/v0.4.2
 [0.4.1]: https://github.com/qtaghdi/apple-music-discord-presence/releases/tag/v0.4.1
 [0.4.0]: https://github.com/qtaghdi/apple-music-discord-presence/releases/tag/v0.4.0
 [0.3.0]: https://github.com/qtaghdi/apple-music-discord-presence/releases/tag/v0.3.0

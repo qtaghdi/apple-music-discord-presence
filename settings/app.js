@@ -9,6 +9,7 @@ const preview = {
   artwork: document.querySelector("#preview-artwork"),
   lineOne: document.querySelector("#preview-line-one"),
   lineTwo: document.querySelector("#preview-line-two"),
+  progress: document.querySelector(".track-progress"),
   time: document.querySelector("#preview-time"),
   button: document.querySelector("#preview-button"),
 };
@@ -36,6 +37,7 @@ function writeForm(settings) {
 function updatePreview() {
   const settings = readForm();
   preview.artwork.classList.toggle("hidden", !settings.showArtwork);
+  preview.progress.hidden = !settings.showTimeRemaining;
   preview.time.hidden = !settings.showTimeRemaining;
   preview.button.hidden = !settings.showButton;
 
