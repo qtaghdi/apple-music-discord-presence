@@ -10,7 +10,9 @@ const stamp = () => new Date().toISOString();
 const log = (message: string) => console.log(`[${stamp()}] ${message}`);
 
 async function main(): Promise<void> {
-  if (process.platform !== "darwin") throw new Error("This application requires macOS.");
+  if (process.platform !== "darwin" && process.platform !== "win32") {
+    throw new Error("This application requires macOS or Windows.");
+  }
   const config = await loadConfig();
   const discord = new DiscordIpc(config.discordClientId);
   const music = new MusicWatcher(config.pollIntervalMs);

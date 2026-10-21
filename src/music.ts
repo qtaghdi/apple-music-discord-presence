@@ -28,13 +28,13 @@ export class MusicWatcher extends EventEmitter {
 
   private launch(): void {
     const root = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
-    const helper = process.env.MUSIC_METADATA_HELPER ?? join(root, "bin", "music-metadata");
+    const { command, args, helper } = musicHelperCommand(root, this.intervalMs);
     if (!existsSync(helper)) {
       this.emit("error", new Error(`Music helper not found at ${helper}; run npm run build.`));
       return;
     }
 
-    const child = spawn(helper, ["--interval-ms", String(this.intervalMs)], {
+    const child = spawn(command, args, {
       stdio: ["ignore", "pipe", "pipe"],
     });
     this.child = child;
@@ -65,4 +65,22 @@ export class MusicWatcher extends EventEmitter {
       }
     });
   }
+}
+
+export function musicHelperCommand(
+  root: string,
+  intervalMs: number,
+  platform: NodeJS.Platform = process.platform,
+  environment: NodeJS.ProcessEnv = process.env,
+): { command: string; args: string[]; helper: string } {
+  if (platform === "win32") {
+    const helper = environment.MUSIC_METADATA_HELPER ?? join(root, "native", "MusicMetadata.ps1");
+    return {
+      command: environment.POWERSHELL_EXE ?? "powershell.exe",
+      args: ["-NoLogo", "-NoProfile", "-NonInteractive", "-ExecutionPolicy", "Bypass", "-File", helper, "-IntervalMs", String(intervalMs)],
+      helper,
+    };
+  }
+  const helper = environment.MUSIC_METADATA_HELPER ?? join(root, "bin", "music-metadata");
+  return { command: helper, args: ["--interval-ms", String(intervalMs)], helper };
 }

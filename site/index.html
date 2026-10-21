@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Show what you're playing in Apple Music as rich, accurate Discord presence on macOS and Windows.">
+    <meta name="theme-color" content="#0b0b10">
+    <meta property="og:title" content="Apple Music Discord Presence">
+    <meta property="og:description" content="Your Apple Music, now playing on Discord. Local-first, resilient, and built for macOS and Windows.">
+    <meta property="og:type" content="website">
+    <title>Apple Music Discord Presence</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="nav-wrap">
+      <nav class="nav" aria-label="Primary navigation">
+        <a class="brand" href="#top" aria-label="Apple Music Discord Presence home">
+          <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span>AM Presence</span>
+        </a>
+        <div class="nav-links">
+          <a href="#features">Features</a>
+          <a href="#setup">Setup</a>
+          <a href="https://github.com/qtaghdi/apple-music-discord-presence">GitHub</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="top">
+        <div class="hero-glow glow-one"></div>
+        <div class="hero-glow glow-two"></div>
+        <div class="hero-copy">
+          <div class="eyebrow"><span></span> Built for macOS + Windows</div>
+          <h1>Your Apple Music.<br><em>Now playing</em> on Discord.</h1>
+          <p class="hero-lede">Share the song, artist, album art, and live progress from Apple Music—without a bot, a relay server, or a fragile browser extension.</p>
+          <div class="hero-actions">
+            <a class="button primary platform-download" href="https://github.com/qtaghdi/apple-music-discord-presence/releases/latest/download/apple-music-discord-presence-macos-arm64.zip">
+              <span class="download-icon" aria-hidden="true">↓</span>
+              <span><small>Download for</small><strong class="platform-label">macOS</strong></span>
+            </a>
+            <a class="button secondary" href="https://github.com/qtaghdi/apple-music-discord-presence">View source <span>↗</span></a>
+          </div>
+          <p class="release-note"><span class="pulse"></span><span id="release-version">Free & open source</span> · No Node.js required</p>
+        </div>
+
+        <div class="hero-visual" aria-label="Example Discord profile showing an Apple Music track">
+          <div class="orbit orbit-one"></div>
+          <div class="orbit orbit-two"></div>
+          <div class="music-window">
+            <div class="window-top"><span></span><span></span><span></span><b>Apple Music</b></div>
+            <div class="cover-art">
+              <div class="cover-sun"></div>
+              <div class="cover-horizon"></div>
+              <span>NEON<br>AFTERGLOW</span>
+            </div>
+            <div class="track-meta"><strong>Midnight Signal</strong><span>Satellite Hearts</span></div>
+            <div class="progress"><i></i></div>
+            <div class="player-controls"><span>‹</span><b>Ⅱ</b><span>›</span></div>
+          </div>
+          <div class="discord-card">
+            <div class="discord-label"><span class="discord-dot"></span> LISTENING TO APPLE MUSIC</div>
+            <div class="presence">
+              <div class="presence-cover"><div></div><span>♫</span></div>
+              <div class="presence-copy"><strong>Midnight Signal</strong><span>Satellite Hearts — Neon Afterglow</span><small>2:18 left</small></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="trust-row" aria-label="Product highlights">
+          <div><strong>0</strong><span>runtime packages</span></div>
+          <div><strong>Local</strong><span>metadata bridge</span></div>
+          <div><strong>Auto</strong><span>Discord reconnect</span></div>
+        </div>
+      </section>
+
+      <section class="narrative" id="features">
+        <div class="section-intro reveal">
+          <span class="section-number">01</span>
+          <div><p class="kicker">Built to stay in sync</p><h2>One quiet bridge.<br>Every detail that matters.</h2></div>
+        </div>
+        <div class="feature-stage reveal">
+          <div class="signal-flow" aria-hidden="true">
+            <div class="signal-node music-node"><span>♫</span><small>Apple Music</small></div>
+            <div class="signal-line"><i></i><i></i><i></i></div>
+            <div class="signal-node bridge-node"><span>↯</span><small>Local bridge</small></div>
+            <div class="signal-line"><i></i><i></i><i></i></div>
+            <div class="signal-node discord-node"><span>✦</span><small>Discord</small></div>
+          </div>
+          <div class="feature-list">
+            <article><span>01</span><div><h3>Live track changes</h3><p>Titles, artists, albums, play state, and seeks update without restarting the app.</p></div></article>
+            <article><span>02</span><div><h3>Accurate time remaining</h3><p>Presence timestamps stay aligned with the actual player position.</p></div></article>
+            <article><span>03</span><div><h3>Album art, gracefully</h3><p>Artwork is fetched directly from Apple when available and never blocks presence.</p></div></article>
+            <article><span>04</span><div><h3>Self-healing connection</h3><p>If Discord restarts, the local client reconnects and restores your activity automatically.</p></div></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="platforms">
+        <div class="section-intro reveal">
+          <span class="section-number">02</span>
+          <div><p class="kicker">Native where it counts</p><h2>Made for your desktop.</h2></div>
+        </div>
+        <div class="platform-grid">
+          <article class="platform-card mac-card reveal">
+            <div class="platform-symbol">⌘</div>
+            <div><span class="availability">Available now</span><h3>macOS</h3><p>A tiny Swift ScriptingBridge helper reads Music directly—no JXA, no Deno, no intermediary server.</p></div>
+            <a href="https://github.com/qtaghdi/apple-music-discord-presence/releases/latest/download/apple-music-discord-presence-macos-arm64.zip">Download Apple Silicon ZIP <span>↓</span></a>
+          </article>
+          <article class="platform-card windows-card reveal">
+            <div class="platform-symbol windows-symbol"><i></i><i></i><i></i><i></i></div>
+            <div><span class="availability">Available now</span><h3>Windows</h3><p>Uses the Windows system media session exposed by Apple Music and connects to Discord through native named pipes.</p></div>
+            <a href="https://github.com/qtaghdi/apple-music-discord-presence/releases/latest/download/apple-music-discord-presence-windows-x64.zip">Download Windows ZIP <span>↓</span></a>
+          </article>
+        </div>
+      </section>
+
+      <section class="setup" id="setup">
+        <div class="section-intro reveal">
+          <span class="section-number">03</span>
+          <div><p class="kicker">Three-minute setup</p><h2>Download. Connect. Listen.</h2></div>
+        </div>
+        <ol class="steps">
+          <li class="reveal"><span>1</span><div><h3>Download your ZIP</h3><p>Choose macOS or Windows. The runtime is already included.</p></div></li>
+          <li class="reveal"><span>2</span><div><h3>Run the installer</h3><p>Paste the public Discord Application ID once. No token or secret is used.</p></div></li>
+          <li class="reveal"><span>3</span><div><h3>Press play</h3><p>Keep Apple Music and desktop Discord open. The rest happens locally.</p></div></li>
+        </ol>
+        <div class="privacy-note reveal"><span>◉</span><p><strong>Your listening stays yours.</strong> Track details go only to Discord and, when artwork is enabled, Apple's public catalog search. There are no analytics or relay servers.</p></div>
+      </section>
+
+      <section class="download-cta" id="download">
+        <div class="cta-noise"></div>
+        <div class="cta-content reveal">
+          <p class="kicker">Ready when your next track starts</p>
+          <h2>Let Discord hear<br>what you hear.</h2>
+          <p>Free, open source, and local-first.</p>
+          <div class="download-grid">
+            <a class="download-card" href="https://github.com/qtaghdi/apple-music-discord-presence/releases/latest/download/apple-music-discord-presence-macos-arm64.zip">
+              <span class="os-icon">⌘</span><span><small>Apple Silicon</small><strong>Download for macOS</strong></span><b>↓</b>
+            </a>
+            <a class="download-card" href="https://github.com/qtaghdi/apple-music-discord-presence/releases/latest/download/apple-music-discord-presence-windows-x64.zip">
+              <span class="os-icon">⊞</span><span><small>64-bit</small><strong>Download for Windows</strong></span><b>↓</b>
+            </a>
+          </div>
+          <a class="release-link" href="https://github.com/qtaghdi/apple-music-discord-presence/releases/latest">Release notes & all downloads ↗</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span>AM Presence</span></a>
+      <p>Independent open-source software. Not affiliated with Apple or Discord.</p>
+      <a href="https://github.com/qtaghdi/apple-music-discord-presence">GitHub ↗</a>
+    </footer>
+  </body>
+</html>
