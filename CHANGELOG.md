@@ -2,6 +2,19 @@
 
 All notable user-facing changes are recorded here. Release-specific download notes live in [`releases/`](releases/).
 
+## [0.4.3] - 2026-10-21
+
+### Changed
+
+- Redesigned the entire landing page to match the settings screen's quiet painterly blue, lavender, and dusty-pink visual language.
+- Reworked the hero, feature flow, platform downloads, setup timeline, final CTA, and footer as one responsive design system.
+- Replaced the synthetic album-art treatment with the same original artwork used by the settings preview.
+- Added richer hover, scroll-reveal, background-drift, status, and playback motion with reduced-motion support.
+
+### Fixed
+
+- Improved mobile stacking, button sizing, section width, and feature-flow spacing across the landing page.
+
 ## [0.4.2] - 2026-10-21
 
 ### Changed
