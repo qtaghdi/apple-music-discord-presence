@@ -1,4 +1,4 @@
-APPLE MUSIC DISCORD PRESENCE — macOS Apple Silicon
+APPLE MUSIC DISCORD PRESENCE | macOS Apple Silicon
 
 1. Move this entire folder somewhere permanent, such as Applications.
 2. Right-click Install.command and choose Open.

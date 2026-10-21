@@ -13,7 +13,7 @@ test("creates listening activity with timestamps and artwork", () => {
     assert.deepEqual(activity, {
       type: 2,
       details: "Song",
-      state: "Artist — Album",
+      state: "Artist · Album",
       timestamps: { start: 1_699_999_960, end: 1_700_000_200 },
       assets: { large_image: "https://example.com/art.jpg", large_text: "Album" },
       buttons: [{ label: "Listen on Apple Music", url: "https://music.apple.com/track" }],

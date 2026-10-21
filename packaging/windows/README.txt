@@ -1,4 +1,4 @@
-APPLE MUSIC DISCORD PRESENCE — Windows 10/11
+APPLE MUSIC DISCORD PRESENCE | Windows 10/11
 
 1. Move this entire folder somewhere permanent.
 2. Double-click Install.cmd.
