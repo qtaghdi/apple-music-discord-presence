@@ -9,6 +9,8 @@
     <meta property="og:description" content="Show your current Apple Music track on Discord. Available for macOS and Windows.">
     <meta property="og:type" content="website">
     <title>Apple Music Discord Presence</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="styles.css">
     <script src="app.js" defer></script>
@@ -42,12 +44,12 @@
               <span class="download-icon" aria-hidden="true">↓</span>
               <span><small>Download for</small><strong class="platform-label">macOS</strong></span>
             </a>
-            <a class="button secondary" href="https://github.com/qtaghdi/apple-music-discord-presence">View source <span>↗</span></a>
+            <a class="button secondary" href="https://github.com/qtaghdi/apple-music-discord-presence">View source <span aria-hidden="true">↗</span></a>
           </div>
-          <p class="release-note"><span class="pulse"></span><span id="release-version">Free & open source</span> · No Node.js required</p>
+          <p class="release-note"><span class="pulse"></span><span id="release-version" aria-live="polite">Free & open source</span> · No Node.js required</p>
         </div>
 
-        <div class="hero-visual" aria-label="Example Discord profile showing an Apple Music track">
+        <div class="hero-visual" role="img" aria-label="Example Discord profile showing an Apple Music track">
           <div class="orbit orbit-one"></div>
           <div class="orbit orbit-two"></div>
           <div class="music-window">
@@ -99,21 +101,21 @@
         </div>
       </section>
 
-      <section class="platforms">
+      <section class="platforms" id="platforms">
         <div class="section-intro reveal">
           <span class="section-number">02</span>
           <div><p class="kicker">Native where it counts</p><h2>Made for your desktop.</h2></div>
         </div>
         <div class="platform-grid">
           <article class="platform-card mac-card reveal">
-            <div class="platform-symbol">⌘</div>
+            <div class="platform-symbol" aria-hidden="true"><span class="brand-icon apple-icon"></span></div>
             <div><span class="availability">Available now</span><h3>macOS</h3><p>A small Swift helper reads Music directly through ScriptingBridge. It does not use JXA, Deno, or an intermediary server.</p></div>
-            <a href="https://github.com/qtaghdi/apple-music-discord-presence/releases/latest/download/apple-music-discord-presence-macos-arm64.zip">Download Apple Silicon ZIP <span>↓</span></a>
+            <a href="https://github.com/qtaghdi/apple-music-discord-presence/releases/latest/download/apple-music-discord-presence-macos-arm64.zip">Download Apple Silicon ZIP <span aria-hidden="true">↓</span></a>
           </article>
           <article class="platform-card windows-card reveal">
-            <div class="platform-symbol windows-symbol"><i></i><i></i><i></i><i></i></div>
+            <div class="platform-symbol" aria-hidden="true"><span class="brand-icon windows-icon"></span></div>
             <div><span class="availability">Available now</span><h3>Windows</h3><p>Uses the Windows system media session exposed by Apple Music and connects to Discord through native named pipes.</p></div>
-            <a href="https://github.com/qtaghdi/apple-music-discord-presence/releases/latest/download/apple-music-discord-presence-windows-x64.zip">Download Windows ZIP <span>↓</span></a>
+            <a href="https://github.com/qtaghdi/apple-music-discord-presence/releases/latest/download/apple-music-discord-presence-windows-x64.zip">Download Windows ZIP <span aria-hidden="true">↓</span></a>
           </article>
         </div>
       </section>
@@ -128,24 +130,24 @@
           <li class="reveal"><span>2</span><div><h3>Run the installer</h3><p>Paste the public Discord Application ID once. No token or secret is used.</p></div></li>
           <li class="reveal"><span>3</span><div><h3>Press play</h3><p>Keep Apple Music and desktop Discord open. The rest happens locally.</p></div></li>
         </ol>
-        <div class="privacy-note reveal"><span>◉</span><p><strong>Your listening stays yours.</strong> Track details go only to Discord and, when artwork is enabled, Apple's public catalog search. There are no analytics or relay servers.</p></div>
+        <div class="privacy-note reveal"><span aria-hidden="true">◉</span><p><strong>Your listening stays yours.</strong> Track details go only to Discord and, when artwork is enabled, Apple's public catalog search. There are no analytics or relay servers.</p></div>
       </section>
 
-      <section class="download-cta" id="download">
-        <div class="cta-noise"></div>
+      <section class="download-cta" id="download" data-animate>
+        <div class="cta-noise" aria-hidden="true"></div>
         <div class="cta-content reveal">
           <p class="kicker">Ready when your next track starts</p>
           <h2>Let Discord hear<br>what you hear.</h2>
           <p>Free, open source, and local-first.</p>
           <div class="download-grid">
             <a class="download-card" href="https://github.com/qtaghdi/apple-music-discord-presence/releases/latest/download/apple-music-discord-presence-macos-arm64.zip">
-              <span class="os-icon">⌘</span><span><small>Apple Silicon</small><strong>Download for macOS</strong></span><b>↓</b>
+              <span class="os-icon" aria-hidden="true"><span class="brand-icon apple-icon"></span></span><span><small>Apple Silicon</small><strong>Download for macOS</strong></span><b aria-hidden="true">↓</b>
             </a>
             <a class="download-card" href="https://github.com/qtaghdi/apple-music-discord-presence/releases/latest/download/apple-music-discord-presence-windows-x64.zip">
-              <span class="os-icon">⊞</span><span><small>64-bit</small><strong>Download for Windows</strong></span><b>↓</b>
+              <span class="os-icon" aria-hidden="true"><span class="brand-icon windows-icon"></span></span><span><small>64-bit</small><strong>Download for Windows</strong></span><b aria-hidden="true">↓</b>
             </a>
           </div>
-          <a class="release-link" href="https://github.com/qtaghdi/apple-music-discord-presence/releases/latest">Release notes & all downloads ↗</a>
+          <a class="release-link" href="https://github.com/qtaghdi/apple-music-discord-presence/releases/latest">Release notes & all downloads <span aria-hidden="true">↗</span></a>
         </div>
       </section>
     </main>
@@ -153,7 +155,7 @@
     <footer>
       <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span>AM Presence</span></a>
       <p>Independent open-source software. Not affiliated with Apple or Discord.</p>
-      <a href="https://github.com/qtaghdi/apple-music-discord-presence">GitHub ↗</a>
+      <a href="https://github.com/qtaghdi/apple-music-discord-presence">GitHub <span aria-hidden="true">↗</span></a>
     </footer>
   </body>
 </html>
