@@ -1,0 +1,32 @@
+const downloads = {
+  mac: "https://github.com/qtaghdi/apple-music-discord-presence/releases/latest/download/apple-music-discord-presence-macos-arm64.zip",
+  windows: "https://github.com/qtaghdi/apple-music-discord-presence/releases/latest/download/apple-music-discord-presence-windows-x64.zip",
+};
+
+const isWindows = /Windows/i.test(navigator.userAgent);
+const platformButton = document.querySelector(".platform-download");
+const platformLabel = document.querySelector(".platform-label");
+if (isWindows) {
+  platformButton.href = downloads.windows;
+  platformLabel.textContent = "Windows";
+}
+
+fetch("https://api.github.com/repos/qtaghdi/apple-music-discord-presence/releases/latest", {
+  headers: { Accept: "application/vnd.github+json" },
+})
+  .then((response) => response.ok ? response.json() : Promise.reject())
+  .then((release) => {
+    document.querySelector("#release-version").textContent = `${release.tag_name} available`;
+  })
+  .catch(() => {});
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));

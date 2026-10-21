@@ -1,8 +1,8 @@
 {
   "name": "apple-music-discord-presence",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
-  "description": "Apple Music Rich Presence for Discord on macOS",
+  "description": "Apple Music Rich Presence for Discord on macOS and Windows",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/qtaghdi/apple-music-discord-presence.git"
@@ -16,9 +16,10 @@
     "node": ">=20"
   },
   "scripts": {
-    "build": "npm run build:helper && tsc -p tsconfig.json",
+    "build": "npm run build:helper && npm run build:ts",
+    "build:ts": "tsc -p tsconfig.json",
     "build:helper": "mkdir -p bin .build/swift-module-cache && SWIFT_MODULE_CACHE_PATH=.build/swift-module-cache CLANG_MODULE_CACHE_PATH=.build/swift-module-cache swiftc -O -framework ScriptingBridge native/MusicMetadata.swift -o bin/music-metadata",
-    "start": "node dist/index.js",
+    "start": "node dist/src/index.js",
     "dev": "tsx src/index.ts",
     "check": "tsc -p tsconfig.json --noEmit",
     "test": "node --test dist/test/*.test.js",

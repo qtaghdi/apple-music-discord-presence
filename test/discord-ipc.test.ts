@@ -10,7 +10,13 @@ test("encodes the Discord IPC little-endian frame", () => {
 });
 
 test("searches all Discord IPC slots without duplicate directories", () => {
-  const paths = ipcPaths({ TMPDIR: "/private/tmp/example", TMP: "/private/tmp/example" });
+  const paths = ipcPaths({ TMPDIR: "/private/tmp/example", TMP: "/private/tmp/example" }, "darwin");
   assert.ok(paths.includes("/private/tmp/example/discord-ipc-9"));
   assert.equal(new Set(paths).size, paths.length);
+});
+
+test("uses Discord named pipes on Windows", () => {
+  const paths = ipcPaths({}, "win32");
+  assert.equal(paths[0], "\\\\?\\pipe\\discord-ipc-0");
+  assert.equal(paths[9], "\\\\?\\pipe\\discord-ipc-9");
 });

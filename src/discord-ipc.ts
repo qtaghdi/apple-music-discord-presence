@@ -20,7 +20,13 @@ export function encodeFrame(opcode: number, payload: unknown): Buffer {
   return frame;
 }
 
-export function ipcPaths(environment: NodeJS.ProcessEnv = process.env): string[] {
+export function ipcPaths(
+  environment: NodeJS.ProcessEnv = process.env,
+  platform: NodeJS.Platform = process.platform,
+): string[] {
+  if (platform === "win32") {
+    return Array.from({ length: 10 }, (_, index) => `\\\\?\\pipe\\discord-ipc-${index}`);
+  }
   const directories = [
     environment.XDG_RUNTIME_DIR,
     environment.TMPDIR,

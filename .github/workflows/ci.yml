@@ -9,7 +9,7 @@ permissions:
   contents: read
 
 jobs:
-  verify:
+  macos:
     runs-on: macos-15
     steps:
       - uses: actions/checkout@v7
@@ -19,3 +19,21 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run verify
+
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build:ts
+      - run: npm test
+      - name: Validate PowerShell syntax
+        shell: pwsh
+        run: |
+          Get-ChildItem native,packaging -Recurse -Filter *.ps1 | ForEach-Object {
+            [void][scriptblock]::Create((Get-Content $_.FullName -Raw))
+          }
