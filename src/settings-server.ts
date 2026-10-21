@@ -13,6 +13,8 @@ const files = new Map<string, readonly [string, string]>([
   ["/", ["index.html", "text/html; charset=utf-8"]],
   ["/app.js", ["app.js", "text/javascript; charset=utf-8"]],
   ["/styles.css", ["styles.css", "text/css; charset=utf-8"]],
+  ["/assets/quiet-color-artwork.webp", ["assets/quiet-color-artwork.webp", "image/webp"]],
+  ["/assets/quiet-color-backdrop.webp", ["assets/quiet-color-backdrop.webp", "image/webp"]],
 ] as const);
 
 interface SettingsServerOptions {
