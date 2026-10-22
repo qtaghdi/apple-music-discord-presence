@@ -2,6 +2,13 @@
 
 All notable user-facing changes are recorded here. Release-specific download notes live in [`releases/`](releases/).
 
+## [0.4.6] - 2026-10-22
+
+### Fixed
+
+- Replaced the Apple silhouette in the Apple Music-to-Discord CTA with the recognizable red Apple Music app icon and white musical note.
+- Documented the provenance of the Apple Music service artwork separately from the AM Presence product logo and operating-system marks.
+
 ## [0.4.5] - 2026-10-22
 
 ### Changed
@@ -142,6 +149,7 @@ All notable user-facing changes are recorded here. Release-specific download not
 - Direct Discord IPC, automatic reconnect, timestamps, seeks, and optional album artwork.
 - LaunchAgent installer, documentation, and unit tests.
 
+[0.4.6]: https://github.com/qtaghdi/apple-music-discord-presence/releases/tag/v0.4.6
 [0.4.5]: https://github.com/qtaghdi/apple-music-discord-presence/releases/tag/v0.4.5
 [0.4.4]: https://github.com/qtaghdi/apple-music-discord-presence/releases/tag/v0.4.4
 [0.4.3]: https://github.com/qtaghdi/apple-music-discord-presence/releases/tag/v0.4.3
