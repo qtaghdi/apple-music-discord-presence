@@ -118,30 +118,17 @@ button, input { font: inherit; }
 }
 
 .brand-mark {
-  position: relative;
   width: 31px;
   height: 31px;
-  display: grid;
-  place-items: center;
-  overflow: hidden;
-  border-radius: 9px 12px 8px 11px;
-  background: var(--rose-deep);
-  box-shadow: 0 8px 20px rgba(201, 87, 131, .22);
+  display: block;
+  flex: none;
+  border-radius: 8px;
+  background: url("assets/brand-mark.svg") center / contain no-repeat;
+  box-shadow: 0 8px 20px rgba(123, 92, 213, .22);
   transition: transform .35s cubic-bezier(.2, .8, .2, 1), box-shadow .35s ease;
 }
 
-.brand-mark::after {
-  content: "";
-  position: absolute;
-  width: 36px;
-  height: 9px;
-  background: rgba(255, 210, 224, .35);
-  transform: rotate(-28deg) translateY(-15px);
-  transition: transform .5s ease;
-}
-
-.brand:hover .brand-mark { transform: rotate(-5deg) scale(1.06); box-shadow: 0 12px 28px rgba(232, 125, 159, .34); }
-.brand:hover .brand-mark::after { transform: rotate(-28deg) translateY(17px); }
+.brand:hover .brand-mark { transform: translateY(-2px) scale(1.06); box-shadow: 0 12px 28px rgba(123, 92, 213, .34); }
 
 .local-badge, .live-badge, .connection {
   display: inline-flex;

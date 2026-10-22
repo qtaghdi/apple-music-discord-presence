@@ -2,6 +2,19 @@
 
 All notable user-facing changes are recorded here. Release-specific download notes live in [`releases/`](releases/).
 
+## [0.4.5] - 2026-10-22
+
+### Changed
+
+- Established the dark three-bar mark as the single AM Presence product logo across the website, settings screen, footer, and favicon.
+- Replaced the final CTA's custom music-note tile with the official Apple silhouette so service marks cannot be mistaken for the product logo.
+
+### Fixed
+
+- Extended the desktop setup timeline from step 1 through the full content width, including a clearly visible continuation after step 3.
+- Kept a continuous vertical 1-to-2-to-3 timeline on tablet and mobile layouts.
+- Added stylesheet versioning so GitHub Pages and local browsers load the corrected branding and timeline immediately instead of showing cached styles.
+
 ## [0.4.4] - 2026-10-22
 
 ### Changed
@@ -129,6 +142,7 @@ All notable user-facing changes are recorded here. Release-specific download not
 - Direct Discord IPC, automatic reconnect, timestamps, seeks, and optional album artwork.
 - LaunchAgent installer, documentation, and unit tests.
 
+[0.4.5]: https://github.com/qtaghdi/apple-music-discord-presence/releases/tag/v0.4.5
 [0.4.4]: https://github.com/qtaghdi/apple-music-discord-presence/releases/tag/v0.4.4
 [0.4.3]: https://github.com/qtaghdi/apple-music-discord-presence/releases/tag/v0.4.3
 [0.4.2]: https://github.com/qtaghdi/apple-music-discord-presence/releases/tag/v0.4.2

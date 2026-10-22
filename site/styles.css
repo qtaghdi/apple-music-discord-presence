@@ -31,10 +31,8 @@ section[id] { scroll-margin-top: 24px; }
 .nav-wrap { position: absolute; inset: 0 0 auto; z-index: 20; border-bottom: 1px solid rgba(221,229,248,.12); background: rgba(6,19,45,.68); backdrop-filter: blur(18px); }
 .nav { width: min(1240px, calc(100% - 48px)); height: 78px; margin: auto; display: flex; align-items: center; justify-content: space-between; }
 .brand { display: inline-flex; align-items: center; gap: 11px; font-size: 14px; font-weight: 800; letter-spacing: -.025em; }
-.brand-mark { position: relative; width: 34px; height: 34px; display: grid; place-items: center; overflow: hidden; border-radius: 10px 13px 9px 12px; color: #fff; background: var(--rose); box-shadow: 0 10px 24px rgba(230,132,165,.24); transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease; }
-.brand-mark::after { content: ""; position: absolute; width: 45px; height: 8px; background: rgba(255,220,231,.38); transform: rotate(-28deg) translateY(-18px); transition: transform .5s ease; }
-.brand:hover .brand-mark { transform: rotate(-5deg) scale(1.06); box-shadow: 0 14px 30px rgba(230,132,165,.36); }
-.brand:hover .brand-mark::after { transform: rotate(-28deg) translateY(19px); }
+.brand-mark { width: 34px; height: 34px; display: block; flex: none; border-radius: 9px; background: url("favicon.svg") center / contain no-repeat; box-shadow: 0 10px 24px rgba(123,92,213,.24); transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease; }
+.brand:hover .brand-mark { transform: translateY(-2px) scale(1.06); box-shadow: 0 14px 30px rgba(123,92,213,.36); }
 .nav-links { display: flex; align-items: center; gap: 30px; color: #d3dcef; font-size: 12px; }
 .nav-links a { transition: color .2s ease, transform .2s ease; }
 .nav-links a:hover { color: #fff; transform: translateY(-1px); }
@@ -148,8 +146,8 @@ h2 em { font-style: normal; color: #efa0d5; }
 .setup .section-number { color: #6075aa; }
 .setup .kicker { color: #7a4b96; }
 .steps { position: relative; list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3,1fr); gap: 0; }
+.steps::before { content: ""; position: absolute; z-index: 0; top: 24px; left: 25px; right: 0; height: 3px; border-radius: 999px; background: linear-gradient(90deg,#8479e8,#9f8eea); box-shadow: 0 3px 12px rgba(87,72,177,.12); }
 .steps li { position: relative; padding: 0 48px 0 0; border: 0; }
-.steps li:not(:last-child)::after { content: ""; position: absolute; z-index: 0; top: 24px; left: 50px; width: calc(100% - 50px); height: 3px; background: linear-gradient(90deg,#8479e8,#9f8eea); }
 .steps li > span { width: 50px; height: 50px; display: grid; place-items: center; margin-bottom: 28px; border: 1px solid rgba(239,215,232,.35); border-radius: 48% 52% 46% 54%; color: #fff; background: #8b79ce; font: 500 13px/1 var(--mono); box-shadow: 0 12px 26px rgba(29,26,78,.22); transition: transform .3s cubic-bezier(.2,.8,.2,1); }
 .steps li > span { position: relative; z-index: 1; }
 .steps li:hover > span { transform: translateY(-5px) rotate(-7deg) scale(1.06); }
@@ -167,7 +165,8 @@ h2 em { font-style: normal; color: #efa0d5; }
 .cta-content { position: relative; z-index: 2; width: min(880px,calc(100% - 32px)); padding: 56px 58px 52px; border: 1px solid rgba(255,255,255,.24); border-radius: 28px 35px 26px 32px; background: linear-gradient(135deg,rgba(7,34,76,.6),rgba(29,58,115,.38)); box-shadow: 0 30px 80px rgba(1,13,38,.32),inset 0 1px rgba(255,255,255,.15); backdrop-filter: blur(22px) saturate(115%); }
 .cta-brands { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 25px; }
 .cta-music,.cta-discord { width: 58px; height: 58px; display: grid; place-items: center; border-radius: 16px 19px 15px 18px; box-shadow: 0 15px 34px rgba(2,15,42,.25); }
-.cta-music { color: #fff; background: linear-gradient(145deg,#fa6b8c,#df3972); font-size: 31px; }
+.cta-music { color: #fff; background: linear-gradient(145deg,#fa6b8c,#df3972); }
+.cta-music .brand-icon { width: 31px; height: 31px; }
 .cta-discord { background: #5865f2; }
 .cta-discord .brand-icon { width: 34px; height: 34px; }
 .discord-icon { mask-image: url("icons/discord.svg"); -webkit-mask-image: url("icons/discord.svg"); }
@@ -210,8 +209,8 @@ footer > a:last-child { justify-self: end; }
   .feature-list article:nth-child(2) { border-right: 0; }
   .platform-grid { grid-template-columns: 1fr; }
   .steps { grid-template-columns: 1fr; gap: 34px; }
+  .steps::before { top: 25px; bottom: 60px; left: 24px; right: auto; width: 3px; height: auto; background: linear-gradient(180deg,#8479e8,#9f8eea); }
   .steps li { min-height: 85px; padding: 0 0 0 76px; }
-  .steps li:not(:last-child)::after { top: 50px; left: 24px; width: 3px; height: calc(100% - 16px); }
   .steps li > span { position: absolute; left: 0; top: 0; }
 }
 
