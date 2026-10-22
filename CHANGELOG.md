@@ -2,6 +2,20 @@
 
 All notable user-facing changes are recorded here. Release-specific download notes live in [`releases/`](releases/).
 
+## [0.4.4] - 2026-10-22
+
+### Changed
+
+- Rebuilt the feature section around a visual Apple Music-to-local-bridge-to-Discord flow instead of small symbolic nodes.
+- Turned the macOS and Windows downloads into full illustrated platform cards while keeping the official platform marks.
+- Reworked the final download area as a restrained glass panel with the official Discord symbol and a clearer Apple Music-to-Discord brand lockup.
+- Gave the setup section its own light periwinkle canvas to match the visual hierarchy of the platform and CTA concepts.
+
+### Fixed
+
+- Replaced the setup timeline with per-step connectors so the line remains continuous between steps 1, 2, and 3.
+- Corrected the feature-card color boundary on narrow screens and verified the layout at desktop and mobile breakpoints.
+
 ## [0.4.3] - 2026-10-21
 
 ### Changed
@@ -115,6 +129,8 @@ All notable user-facing changes are recorded here. Release-specific download not
 - Direct Discord IPC, automatic reconnect, timestamps, seeks, and optional album artwork.
 - LaunchAgent installer, documentation, and unit tests.
 
+[0.4.4]: https://github.com/qtaghdi/apple-music-discord-presence/releases/tag/v0.4.4
+[0.4.3]: https://github.com/qtaghdi/apple-music-discord-presence/releases/tag/v0.4.3
 [0.4.2]: https://github.com/qtaghdi/apple-music-discord-presence/releases/tag/v0.4.2
 [0.4.1]: https://github.com/qtaghdi/apple-music-discord-presence/releases/tag/v0.4.1
 [0.4.0]: https://github.com/qtaghdi/apple-music-discord-presence/releases/tag/v0.4.0

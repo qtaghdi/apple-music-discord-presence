@@ -81,15 +81,12 @@
       <section class="narrative" id="features">
         <div class="section-intro reveal">
           <span class="section-number">01</span>
-          <div><p class="kicker">Built to stay in sync</p><h2>One quiet bridge.<br>Every detail that matters.</h2></div>
+          <div><p class="kicker">Built to stay in sync</p><h2>Your music,<br><em>where you are.</em></h2></div>
         </div>
         <div class="feature-stage reveal">
-          <div class="signal-flow" aria-hidden="true">
-            <div class="signal-node music-node"><span>♫</span><small>Apple Music</small></div>
-            <div class="signal-line"><i></i><i></i><i></i></div>
-            <div class="signal-node bridge-node"><span>↯</span><small>Local bridge</small></div>
-            <div class="signal-line"><i></i><i></i><i></i></div>
-            <div class="signal-node discord-node"><span>✦</span><small>Discord</small></div>
+          <div class="flow-visual">
+            <img src="assets/feature-flow.webp" alt="Apple Music flowing through a local bridge to Discord">
+            <div class="flow-labels" aria-hidden="true"><span>Apple Music</span><span>Local bridge</span><span>Discord</span></div>
           </div>
           <div class="feature-list">
             <article><span>01</span><div><h3>Live track changes</h3><p>Titles, artists, albums, play state, and seeks update without restarting the app.</p></div></article>
@@ -135,6 +132,11 @@
       <section class="download-cta" id="download" data-animate>
         <div class="cta-noise" aria-hidden="true"></div>
         <div class="cta-content reveal">
+          <div class="cta-brands" aria-label="Apple Music and Discord">
+            <span class="cta-music" aria-hidden="true">♪</span>
+            <span class="cta-times" aria-hidden="true">×</span>
+            <span class="cta-discord" aria-hidden="true"><span class="brand-icon discord-icon"></span></span>
+          </div>
           <h2>Let Discord hear<br>what you hear.</h2>
           <p>Free, open source, and local-first.</p>
           <div class="download-grid">
