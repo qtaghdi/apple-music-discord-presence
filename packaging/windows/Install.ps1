@@ -18,7 +18,7 @@ if (-not (Test-Path $configFile)) {
     $config = [ordered]@{
         discordClientId = $ClientId
         pollIntervalMs = 1000
-        showPaused = $true
+        showPaused = $false
         presence = [ordered]@{
             showAlbum = $true
             showTimeRemaining = $true
@@ -31,9 +31,18 @@ if (-not (Test-Path $configFile)) {
 }
 
 $startScript = Join-Path $root "Start.ps1"
-$runCommand = "powershell.exe -NoLogo -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File `"$startScript`""
-$runKey = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run"
-New-ItemProperty -Path $runKey -Name "AppleMusicDiscordPresence" -Value $runCommand -PropertyType String -Force | Out-Null
-Start-Process powershell.exe -WindowStyle Hidden -ArgumentList @("-NoLogo", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "`"$startScript`"")
-Write-Host "Installed and started. Keep this folder in place."
-Write-Host "Double-click Settings.cmd whenever you want to customize the activity."
+$arguments = "-STA -NoLogo -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File `"$startScript`""
+$shortcutPath = Join-Path ([Environment]::GetFolderPath('Programs')) 'Apple Music Discord Presence.lnk'
+$shell = New-Object -ComObject WScript.Shell
+$shortcut = $shell.CreateShortcut($shortcutPath)
+$shortcut.TargetPath = "$env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe"
+$shortcut.Arguments = $arguments
+$shortcut.WorkingDirectory = $root
+$shortcut.Save()
+# Preserve an existing login preference while replacing the old background-only command.
+$runKey = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run'
+if (Get-ItemProperty -Path $runKey -Name 'AppleMusicDiscordPresence' -ErrorAction SilentlyContinue) {
+    New-ItemProperty -Path $runKey -Name 'AppleMusicDiscordPresence' -Value "powershell.exe $arguments" -PropertyType String -Force | Out-Null
+}
+Start-Process powershell.exe -WindowStyle Hidden -ArgumentList $arguments
+Write-Host "Installed in the Start menu. Use the tray icon to open Settings or enable launch at login. Keep this folder in place."

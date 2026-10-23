@@ -28,10 +28,12 @@ test("serves the local UI and saves same-origin settings", async () => {
     writeFile(join(assets, "assets", "quiet-color-backdrop.webp"), Buffer.from("RIFF")),
   ]);
   let current = initial;
+  let discordConnected = false;
   const server = new SettingsServer({
     root,
     port: 0,
     getSettings: () => current,
+    getStatus: () => ({ discordConnected }),
     saveSettings: async (settings) => {
       current = settings;
       return current;
@@ -40,6 +42,11 @@ test("serves the local UI and saves same-origin settings", async () => {
 
   try {
     await server.start();
+    assert.deepEqual(await (await fetch(`${server.origin}/health`)).json(), { ok: true, discordConnected: false });
+    discordConnected = true;
+    assert.deepEqual(await (await fetch(`${server.origin}/health`)).json(), { ok: true, discordConnected: true });
+    discordConnected = false;
+    assert.deepEqual(await (await fetch(`${server.origin}/health`)).json(), { ok: true, discordConnected: false });
     const page = await fetch(server.origin);
     assert.equal(page.status, 200);
     assert.match(await page.text(), /Settings/);

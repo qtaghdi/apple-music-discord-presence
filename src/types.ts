@@ -30,6 +30,7 @@ export interface AppConfig {
 
 export interface DiscordActivity {
   type: 2;
+  status_display_type: 2;
   details: string;
   state: string;
   timestamps?: { start: number; end?: number };

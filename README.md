@@ -13,7 +13,13 @@ The release ZIPs include a private Node.js runtime, so end users do not need to 
 - [Download for Windows x64](https://github.com/qtaghdi/apple-music-discord-presence/releases/latest/download/apple-music-discord-presence-windows-x64.zip)
 - [Open the product website](https://qtaghdi.github.io/apple-music-discord-presence/)
 
-After extracting the ZIP, keep its folder somewhere permanent and run `Install.command` on macOS or `Install.cmd` on Windows. The installer asks for a Discord Application ID once and configures login startup. Open `Settings.command` on macOS or `Settings.cmd` on Windows whenever you want to customize the activity.
+After extracting the ZIP, run `Install.command` on macOS or `Install.cmd` on Windows. Enter your Discord Application ID once. No Discord login or bot token is needed.
+
+- **macOS:** the installer copies the app to `~/Applications`. Click the **music-note icon in the menu bar → 설정 열기**. You can reopen the app from your user Applications folder or Spotlight after quitting.
+- **Windows:** keep the extracted folder in a permanent location. The installer creates **Apple Music Discord Presence** in the Start menu. Right-click its **system tray icon → Open Settings** (the icon may be under the hidden-icons arrow). Double-clicking the icon also opens settings.
+- The menu shows the Discord connection status and offers reconnect, logs, launch at login, and quit. Enable **로그인 시 자동 실행 / Launch at login** if desired. Quitting stops the presence client for the current session; turn off launch at login separately to prevent it starting next time.
+
+The existing `Settings.command` / `Settings.cmd` helpers remain available. The macOS installer builds an ad-hoc-signed app, not a notarized distribution; macOS may require explicit approval in Privacy & Security on first launch.
 
 ## Why this implementation
 
@@ -65,13 +71,15 @@ Accept macOS's request to let `music-metadata` control Music. For automatic logi
 npm run install-agent -- YOUR_DISCORD_APPLICATION_ID
 ```
 
-Remove it with `npm run uninstall-agent`. The repository must remain at the same path while its LaunchAgent is installed.
+This source-only LaunchAgent does not provide a menu bar icon and can be blocked by the installed Node binary’s macOS automation entitlements; the packaged app is recommended for desktop use. Remove it with `npm run uninstall-agent`. The repository must remain at the same path while its LaunchAgent is installed.
+
+Discord member-list status uses **Artist - Track** instead of the application name. The expanded activity card also uses this as its details line. Discord controls the activity-type icon and card heading, so the card may still say **Listening to Apple Music**. No extra emoji is added to the status text.
 
 ## Configuration
 
 ### Local settings screen
 
-ZIP installations include `Settings.command` on macOS and `Settings.cmd` on Windows. The launcher opens a settings page served only from `127.0.0.1` while the app is running. It can change album details, artwork, playback progress, the Apple Music button, paused activity, and artist/album ordering. Saving updates the current Discord activity immediately.
+ZIP installations provide a menu bar icon on macOS and a system tray icon on Windows. Choose **설정 열기 / Open Settings** to open a settings page served only from `127.0.0.1` while the app is running. It can change album details, artwork, playback progress, the Apple Music button, paused activity, and artist/album ordering. Saving updates the current Discord activity immediately.
 
 The settings page never exposes or changes the Discord Application ID. It has no external server, account, analytics, or internet-facing listener.
 
@@ -105,14 +113,14 @@ Presence options:
 
 | Setting | Effect |
 | --- | --- |
-| `showPaused` | Keep the current track visible while playback is paused. |
+| `showPaused` | Keep the current track visible while playback is paused. Off by default for new installations. |
 | `presence.showAlbum` | Include the album name next to the artist and in the artwork tooltip. |
-| `presence.showTimeRemaining` | Show Discord's elapsed playback timer, starting at the current song position. |
+| `presence.showTimeRemaining` | Send start and end times so Discord can show playback progress from the current position to the end of the track. |
 | `presence.showButton` | Add the **Listen on Apple Music** button when a catalog match is found. |
 | `presence.displayOrder` | Use `artist-album` for `Artist · Album` or `album-artist` for `Album · Artist`. |
 | `artwork.enabled` | Show album artwork when a catalog match is found. |
 
-Restart the app after manually changing `config.json`. Settings saved through the local screen apply immediately. ZIP installations include `Restart.command` on macOS and `Restart.cmd` on Windows. Installers preserve an existing configuration during upgrades.
+Restart the app after manually changing `config.json`. Settings saved through the local screen apply immediately. Choose **다시 연결 / Reconnect** in the icon menu after manual changes. Installers preserve an existing configuration during upgrades.
 
 `fallbackLargeImageKey` is optional. If used, upload an image with that key under the Discord application's Rich Presence art assets.
 
@@ -128,13 +136,14 @@ Restart the app after manually changing `config.json`. Settings saved through th
 
 ### Settings screen does not open
 
-- Run `Install.command` or `Install.cmd` first. If the app was already installed, run the included restart helper and try again.
+- Run `Install.command` or `Install.cmd` first. Reopen the app from `~/Applications` on macOS or the Start menu on Windows, then choose settings from its icon.
 - The settings page is available only on this computer at `http://127.0.0.1:47621` while the background app is running.
 - Check the platform log for another program already using port `47621`.
 
 ### macOS metadata or permission problem
 
-- Open **System Settings → Privacy & Security → Automation** and allow the helper or terminal to control Music.
+- Open **System Settings → Privacy & Security → Automation** and allow **Apple Music Discord Presence** to control Music (or your terminal for source development). The bundled macOS app declares the Music usage description and automation entitlement.
+- Source-only LaunchAgents that run a hardened Node binary directly may be denied Music access without a permission prompt. Use the packaged menu bar app, or run the source client interactively from a terminal with Music permission.
 - Run `./bin/music-metadata --once` to print one diagnostic JSON line and trigger the permission request.
 - Rebuilding changes the unsigned helper binary, so macOS may ask again after an update.
 
@@ -147,7 +156,7 @@ Restart the app after manually changing `config.json`. Settings saved through th
 
 ### Album art is missing
 
-Artwork lookup needs HTTPS access to `itunes.apple.com`, and some local or region-specific releases may not match. Presence continues without it. Set `artwork.enabled` to `false` for fully local operation or configure `fallbackLargeImageKey`.
+Artwork lookup needs HTTPS access to `itunes.apple.com`. The resolver tries the configured country and the US catalog, checks translated titles using artist and track duration, and can fall back to an exact artist/album match for artwork only. Album-only matches never create a song link. Some local or region-specific releases may still not match. Presence continues without it. Set `artwork.enabled` to `false` for fully local operation or configure `fallbackLargeImageKey`.
 
 ## Development and releases
 
@@ -170,3 +179,9 @@ Track metadata stays on the computer except when artwork or the Apple Music butt
 ## License
 
 [MIT](LICENSE)
+
+## Building the desktop package
+
+On macOS run `npm run verify && ./scripts/package-macos.sh`, then open `release/apple-music-discord-presence-macos-arm64/Install.command`. The app host owns the Node worker and stops it when you quit. On Windows run `npm run build:ts`, `npm test`, and `./scripts/package-windows.ps1`; the tray host uses built-in Windows Forms. There are no additional runtime npm dependencies.
+
+To uninstall, turn off launch at login and quit using the icon menu. On macOS move `~/Applications/Apple Music Discord Presence.app` to Trash. On Windows run `Uninstall.cmd` to remove the Start menu shortcut and startup entry, then remove the extracted folder. Configuration and logs remain for future installs. Before upgrading, quit the running app; rerun the installer with the new ZIP.

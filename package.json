@@ -1,6 +1,6 @@
 {
   "name": "apple-music-discord-presence",
-  "version": "0.4.6",
+  "version": "0.5.0",
   "private": true,
   "description": "Apple Music Rich Presence for Discord on macOS and Windows",
   "repository": {
@@ -16,7 +16,7 @@
     "node": ">=20"
   },
   "scripts": {
-    "build": "npm run build:helper && npm run build:ts",
+    "build": "npm run build:helper && npm run build:menubar && npm run build:ts",
     "build:ts": "tsc -p tsconfig.json",
     "build:helper": "mkdir -p bin .build/swift-module-cache && SWIFT_MODULE_CACHE_PATH=.build/swift-module-cache CLANG_MODULE_CACHE_PATH=.build/swift-module-cache swiftc -O -framework ScriptingBridge native/MusicMetadata.swift -o bin/music-metadata",
     "start": "node dist/src/index.js",
@@ -25,7 +25,8 @@
     "test": "node --test dist/test/*.test.js",
     "verify": "npm run build && npm test",
     "install-agent": "./scripts/install-launch-agent.sh",
-    "uninstall-agent": "./scripts/uninstall-launch-agent.sh"
+    "uninstall-agent": "./scripts/uninstall-launch-agent.sh",
+    "build:menubar": "mkdir -p .build && swiftc -O -framework AppKit native/MenuBar.swift -o .build/apple-music-presence"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",

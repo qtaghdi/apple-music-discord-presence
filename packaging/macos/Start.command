@@ -1,4 +1,5 @@
 #!/bin/zsh
 set -eu
-ROOT_DIR="$(cd "$(dirname "$0")" && pwd)"
-exec "$ROOT_DIR/runtime/bin/node" "$ROOT_DIR/dist/src/index.js"
+APP="$HOME/Applications/Apple Music Discord Presence.app"
+if [[ ! -d "$APP" ]]; then APP="$(cd "$(dirname "$0")" && pwd)/Apple Music Discord Presence.app"; fi
+/usr/bin/open "$APP"

@@ -10,10 +10,11 @@ login startup. No Node.js installation is required.
 
 CUSTOMIZATION
 
-Double-click Settings.cmd to open the local settings screen. Changes are saved
+Right-click the tray icon > Open Settings (or double-click the icon).
+The icon may be under the hidden-icons arrow. Reopen the app from the Start menu. Changes are saved
 immediately and do not require a restart.
 
-For advanced settings, edit this file and then run Restart.cmd:
+For advanced settings, edit this file and then choose Reconnect from the tray menu:
 %APPDATA%\Apple Music Discord Presence\config.json
 
 - showPaused: show or hide paused tracks
@@ -22,3 +23,5 @@ For advanced settings, edit this file and then run Restart.cmd:
 - presence.showButton: show or hide the Apple Music button
 - presence.displayOrder: "artist-album" or "album-artist"
 - artwork.enabled: show or hide album artwork
+
+Enable launch at login from the icon menu if desired. Quit from that menu before upgrading or uninstalling. Turning off launch at login and quitting are separate actions.
