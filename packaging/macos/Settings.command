@@ -1,13 +1,11 @@
 #!/bin/zsh
 set -eu
-
-SETTINGS_URL="http://127.0.0.1:47621"
-
-if ! /usr/bin/curl -fsS --max-time 2 "$SETTINGS_URL/health" >/dev/null; then
-  echo "Apple Music Presence is not running."
-  echo "Run Install.command first, or use Restart.command if it is already installed."
-  read -k 1 "?Press any key to close."
-  exit 1
-fi
-
-/usr/bin/open "$SETTINGS_URL/"
+"$(dirname "$0")/Start.command"
+for attempt in {1..30}; do
+  if /usr/bin/curl -fsS --max-time 1 http://127.0.0.1:47621/health >/dev/null; then
+    /usr/bin/open http://127.0.0.1:47621/
+    exit 0
+  fi
+  sleep 1
+done
+echo "Complete first-time setup in Apple Music Discord Presence, then choose Settings from the menu bar."

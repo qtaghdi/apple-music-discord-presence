@@ -9,7 +9,7 @@ export const defaultPresenceOptions: PresenceOptions = {
   showArtwork: true,
   showTimeRemaining: true,
   showButton: true,
-  showPaused: true,
+  showPaused: false,
   displayOrder: "artist-album",
 };
 
@@ -33,15 +33,17 @@ export function createActivity(
     : artist;
   const activity: DiscordActivity = {
     type: 2,
-    details: limit(track.name),
+    status_display_type: 2,
+    details: limit(`${artist} - ${track.name}`),
     state: limit(state),
   };
 
-  if (options.showTimeRemaining && track.state === "playing" && track.duration && track.position !== undefined) {
+  if (options.showTimeRemaining && track.state === "playing" && track.duration !== undefined && Number.isFinite(track.duration) && track.duration > 0 && track.position !== undefined && Number.isFinite(track.position)) {
     const now = Math.floor(Date.now() / 1000);
     const position = Math.max(0, Math.min(track.duration, track.position));
     activity.timestamps = {
       start: now - Math.floor(position),
+      end: now - Math.floor(position) + Math.ceil(track.duration),
     };
   }
 

@@ -42,7 +42,7 @@ export async function loadConfig(): Promise<AppConfig> {
   return {
     discordClientId,
     pollIntervalMs: Math.max(250, fileConfig.pollIntervalMs ?? 1000),
-    showPaused: fileConfig.showPaused ?? true,
+    showPaused: fileConfig.showPaused ?? false,
     presence: {
       showAlbum: fileConfig.presence?.showAlbum ?? true,
       showTimeRemaining: fileConfig.presence?.showTimeRemaining ?? true,

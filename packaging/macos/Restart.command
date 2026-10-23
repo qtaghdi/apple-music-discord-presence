@@ -1,15 +1,5 @@
 #!/bin/zsh
 set -eu
-
-LABEL="io.github.apple-music-discord-presence"
-DOMAIN="gui/$(id -u)"
-
-if ! launchctl print "$DOMAIN/$LABEL" >/dev/null 2>&1; then
-  echo "Apple Music Discord Presence is not installed. Run Install.command first."
-  read -k 1 "?Press any key to close."
-  exit 1
-fi
-
-launchctl kickstart -k "$DOMAIN/$LABEL"
-echo "Restarted with the latest settings."
-read -k 1 "?Press any key to close."
+# The running app owns its worker; restarting it through the menu avoids orphaned helpers.
+"$(dirname "$0")/Start.command"
+echo "Use the music-note menu bar icon > 다시 연결 to restart the connection."

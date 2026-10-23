@@ -1,7 +1,7 @@
 {
   "discordClientId": "YOUR_DISCORD_APPLICATION_ID",
   "pollIntervalMs": 1000,
-  "showPaused": true,
+  "showPaused": false,
   "presence": {
     "showAlbum": true,
     "showTimeRemaining": true,

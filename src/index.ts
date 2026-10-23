@@ -56,6 +56,7 @@ async function main(): Promise<void> {
   const settingsServer = new SettingsServer({
     root,
     getSettings: () => displaySettingsFromConfig(config),
+    getStatus: () => ({ discordConnected: discord.isReady() }),
     saveSettings: async (settings) => {
       config = await saveDisplaySettings(settings);
       lastPresenceSignature = "";

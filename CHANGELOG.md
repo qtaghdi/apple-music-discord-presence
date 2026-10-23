@@ -2,6 +2,26 @@
 
 All notable user-facing changes are recorded here. Release-specific download notes live in [`releases/`](releases/).
 
+## [0.5.0] - 2026-10-23
+
+### Changed
+
+- New installations hide Discord activity while paused; existing display preferences are preserved.
+- Member-list status and activity details now display Artist - Track using Discord’s details status display mode.
+
+### Added
+
+- macOS music-note menu bar app and Windows tray menu with settings, Discord connection status, reconnect, launch at login, logs, and quit.
+- macOS installation into the user Applications folder and a Windows Start menu shortcut.
+- A native first-run Application ID dialog on macOS, with a link to the Discord developer portal.
+
+### Fixed
+
+- Album artwork lookup now falls back to the US catalog and album searches, with artist/duration checks for translated titles.
+- Listening activities include both timestamp endpoints for Discord playback progress bars.
+- The macOS desktop app declares Music automation usage and entitlements, avoiding the direct hardened Node LaunchAgent permission failure.
+- Desktop hosts own the background worker and stop it when users quit; duplicate desktop launches reuse the running instance.
+
 ## [0.4.6] - 2026-10-22
 
 ### Fixed
