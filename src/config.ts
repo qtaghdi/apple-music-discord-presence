@@ -3,6 +3,9 @@ import { homedir } from "node:os";
 import { dirname, join } from "node:path";
 import type { AppConfig, DisplaySettings } from "./types.js";
 
+// Public application selected by the project owner; never a secret or user credential.
+export const SHARED_DISCORD_CLIENT_ID = "1562487067424854017";
+
 type PartialConfig = Partial<Omit<AppConfig, "artwork" | "presence">> & {
   artwork?: Partial<AppConfig["artwork"]>;
   presence?: Partial<AppConfig["presence"]>;
@@ -30,7 +33,7 @@ export function defaultConfigPaths(
 export async function loadConfig(): Promise<AppConfig> {
   const { value: fileConfig } = await readConfigSource();
 
-  const discordClientId = process.env.DISCORD_CLIENT_ID ?? fileConfig.discordClientId;
+  const discordClientId = process.env.DISCORD_CLIENT_ID ?? fileConfig.discordClientId ?? SHARED_DISCORD_CLIENT_ID;
   if (!discordClientId || !/^\d{17,20}$/.test(discordClientId)) {
     throw new Error("Set a valid discordClientId in config.json or DISCORD_CLIENT_ID.");
   }

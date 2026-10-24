@@ -3,7 +3,17 @@
 [![CI](https://github.com/qtaghdi/apple-music-discord-presence/actions/workflows/ci.yml/badge.svg)](https://github.com/qtaghdi/apple-music-discord-presence/actions/workflows/ci.yml)
 [![Website](https://img.shields.io/badge/website-GitHub%20Pages-fa547f)](https://qtaghdi.github.io/apple-music-discord-presence/)
 
-Show the track playing in Apple Music as Discord Rich Presence on macOS and Windows. This is a new, independent implementation; it does not modify or redistribute code from earlier projects that inspired it.
+Show Apple Music on Discord with album artwork, live playback progress, and automatic pause detection. **For macOS and Windows.**
+
+![Actual Apple Music activity in Discord, showing artwork and a playback progress bar](site/assets/discord-presence.png)
+
+*Actual Discord desktop capture on macOS. The Apple Music button is visible to other users, not on your own profile.*
+
+**Download → Install → Play.** No Application ID setup, Discord login, bot token, or Node.js installation required.
+
+[Download for macOS](https://github.com/qtaghdi/apple-music-discord-presence/releases/latest/download/apple-music-discord-presence-macos-arm64.zip) · [Download for Windows](https://github.com/qtaghdi/apple-music-discord-presence/releases/latest/download/apple-music-discord-presence-windows-x64.zip) · [Website](https://qtaghdi.github.io/apple-music-discord-presence/)
+
+If this is useful to you, **[star the project on GitHub](https://github.com/qtaghdi/apple-music-discord-presence)** to help others discover it.
 
 ## Download
 
@@ -13,7 +23,7 @@ The release ZIPs include a private Node.js runtime, so end users do not need to 
 - [Download for Windows x64](https://github.com/qtaghdi/apple-music-discord-presence/releases/latest/download/apple-music-discord-presence-windows-x64.zip)
 - [Open the product website](https://qtaghdi.github.io/apple-music-discord-presence/)
 
-After extracting the ZIP, run `Install.command` on macOS or `Install.cmd` on Windows. Enter your Discord Application ID once. No Discord login or bot token is needed.
+After extracting the ZIP, run `Install.command` on macOS or `Install.cmd` on Windows. The shared Discord application is configured automatically. On macOS, allow the app to read Music when prompted.
 
 - **macOS:** the installer copies the app to `~/Applications`. Click the **music-note icon in the menu bar → 설정 열기**. You can reopen the app from your user Applications folder or Spotlight after quitting.
 - **Windows:** keep the extracted folder in a permanent location. The installer creates **Apple Music Discord Presence** in the Start menu. Right-click its **system tray icon → Open Settings** (the icon may be under the hidden-icons arrow). Double-clicking the icon also opens settings.
@@ -39,9 +49,9 @@ The existing `Settings.command` / `Settings.cmd` helpers remain available. The m
 
 - macOS 13+ on Apple Silicon, or Windows 10 version 1809+ / Windows 11 x64
 - The Apple Music and Discord desktop apps
-- A public Discord Application ID supplied by the distributor or created in the [Discord Developer Portal](https://discord.com/developers/applications)
+- No developer account or Application ID setup required; releases use the project’s public shared Discord application.
 
-Only the numeric Application ID is used. Never place a Discord client secret or bot token in the config.
+Advanced users can optionally supply their own numeric Discord Application ID. Never place a Discord client secret or bot token in the config.
 
 ### Source development
 
@@ -59,7 +69,7 @@ On Windows, use `npm run build:ts && npm test`; the native Swift helper is macOS
 
 ## Source installation on macOS
 
-Create `~/Library/Application Support/Apple Music Discord Presence/config.json` from `config.example.json`, then run:
+The shared application works without a configuration file. Run:
 
 ```sh
 npm start
@@ -68,7 +78,7 @@ npm start
 Accept macOS's request to let `music-metadata` control Music. For automatic login startup:
 
 ```sh
-npm run install-agent -- YOUR_DISCORD_APPLICATION_ID
+npm run install-agent
 ```
 
 This source-only LaunchAgent does not provide a menu bar icon and can be blocked by the installed Node binary’s macOS automation entitlements; the packaged app is recommended for desktop use. Remove it with `npm run uninstall-agent`. The repository must remain at the same path while its LaunchAgent is installed.
@@ -91,7 +101,7 @@ The app reads `AMDP_CONFIG` first, then the platform config:
 - Windows: `%APPDATA%\Apple Music Discord Presence\config.json`
 - Fallback: `~/.config/apple-music-discord-presence/config.json`
 
-`DISCORD_CLIENT_ID` overrides the ID in the file.
+`DISCORD_CLIENT_ID` overrides the ID in the file. If neither is set, the app uses the public shared application (`1562487067424854017`), selected by this project’s owner. Existing custom IDs are preserved. To use your own application, set `discordClientId` in your configuration.
 
 ```json
 {
@@ -130,7 +140,7 @@ Restart the app after manually changing `config.json`. Settings saved through th
 
 - Use the full Discord desktop app; the browser client has no local IPC.
 - Enable **User Settings → Activity Privacy → Share your detected activities with others**.
-- Confirm the Application ID is numeric, not a client secret or bot token.
+- If you override the shared Application ID, confirm your custom ID is numeric, not a client secret or bot token.
 - Quit Discord completely and reopen it. The app reconnects automatically within 30 seconds.
 - Temporarily stop other Rich Presence tools while testing.
 

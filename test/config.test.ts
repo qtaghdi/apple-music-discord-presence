@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { loadConfig, parseDisplaySettings, saveDisplaySettings } from "../src/config.js";
+import { SHARED_DISCORD_CLIENT_ID, loadConfig, parseDisplaySettings, saveDisplaySettings } from "../src/config.js";
 
 async function withConfig(
   contents: object,
@@ -108,5 +108,25 @@ test("saves display settings without changing advanced configuration", async () 
     assert.deepEqual(saved.artwork, { enabled: false, country: "KR" });
     assert.equal(config.presence.displayOrder, "album-artist");
     assert.equal(config.showPaused, false);
+  });
+});
+
+test("uses the shared application without asking for an ID", async () => {
+  await withConfig({}, async () => {
+    const config = await loadConfig();
+    assert.equal(config.discordClientId, SHARED_DISCORD_CLIENT_ID);
+    assert.equal(config.showPaused, false);
+  });
+});
+test("preserves custom IDs and honors an explicit environment override", async () => {
+  await withConfig({ discordClientId: "123456789012345678" }, async () => {
+    assert.equal((await loadConfig()).discordClientId, "123456789012345678");
+    process.env.DISCORD_CLIENT_ID = "234567890123456789";
+    assert.equal((await loadConfig()).discordClientId, "234567890123456789");
+  });
+});
+test("rejects malformed explicit IDs instead of silently using the shared app", async () => {
+  await withConfig({ discordClientId: "not-a-valid-id" }, async () => {
+    await assert.rejects(loadConfig(), /valid discordClientId/);
   });
 });

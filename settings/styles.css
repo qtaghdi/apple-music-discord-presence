@@ -328,3 +328,7 @@ h1 { margin: 0 0 13px; font-size: clamp(34px, 4vw, 48px); line-height: 1.02; let
   *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition-duration: .01ms !important; }
   .preview-panel { transform: none !important; }
 }
+
+.project-support { margin: 32px 0 0; text-align: center; color: var(--muted, #b9c4dc); font-size: 13px; }
+.project-support a { color: inherit; text-underline-offset: 4px; }
+.project-support a:focus-visible { outline: 2px solid currentColor; outline-offset: 5px; }

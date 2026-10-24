@@ -2,7 +2,7 @@ APPLE MUSIC DISCORD PRESENCE | Windows 10/11
 
 1. Move this entire folder somewhere permanent.
 2. Double-click Install.cmd.
-3. Paste your Discord Application ID when asked.
+3. The shared Discord application is configured automatically. No ID or login needed.
 4. Keep Apple Music and the Discord desktop app open while listening.
 
 Keep this folder in place after installation. Use Uninstall.cmd to remove

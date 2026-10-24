@@ -48,34 +48,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     func configure() throws {
         let file = base.appendingPathComponent("config.json")
         guard !fm.fileExists(atPath: file.path) else { return }
-        NSApp.activate(ignoringOtherApps: true)
-        let alert = NSAlert()
-        alert.messageText = "Apple Music을 Discord에 표시하기"
-        alert.informativeText = "Discord 개발자 포털에서 만든 앱의 Application ID를 입력하세요. 비밀번호나 봇 토큰은 필요하지 않습니다."
-        let input = NSTextField(frame: NSRect(x: 0, y: 0, width: 360, height: 24))
-        input.placeholderString = "Application ID (17–20자리 숫자)"
-        alert.accessoryView = input
-        alert.addButton(withTitle: "연결")
-        alert.addButton(withTitle: "개발자 포털 열기")
-        alert.addButton(withTitle: "종료")
-        while true {
-            let result = alert.runModal()
-            if result == .alertSecondButtonReturn {
-                NSWorkspace.shared.open(URL(string: "https://discord.com/developers/applications")!)
-                continue
-            }
-            guard result == .alertFirstButtonReturn else { NSApp.terminate(nil); return }
-            let id = input.stringValue.trimmingCharacters(in: .whitespacesAndNewlines)
-            guard id.range(of: "^[0-9]{17,20}$", options: .regularExpression) != nil else {
-                alert.informativeText = "Application ID는 17–20자리 숫자입니다. 다시 확인해 주세요."
-                continue
-            }
-            try fm.createDirectory(at: base, withIntermediateDirectories: true)
-            let data = try JSONSerialization.data(withJSONObject: ["discordClientId": id, "showPaused": false, "artwork": ["enabled": true, "country": "US"]], options: [.prettyPrinted])
-            try data.write(to: file, options: .atomic)
-            try fm.setAttributes([.posixPermissions: 0o600], ofItemAtPath: file.path)
-            return
-        }
+        // The worker supplies the shared application ID; existing custom IDs are preserved.
+        try fm.createDirectory(at: base, withIntermediateDirectories: true)
+        let data = try JSONSerialization.data(withJSONObject: ["showPaused": false, "artwork": ["enabled": true, "country": "US"]], options: [.prettyPrinted])
+        try data.write(to: file, options: .atomic)
+        try fm.setAttributes([.posixPermissions: 0o600], ofItemAtPath: file.path)
     }
 
     var logs: URL { fm.homeDirectoryForCurrentUser.appendingPathComponent("Library/Logs/Apple Music Discord Presence") }

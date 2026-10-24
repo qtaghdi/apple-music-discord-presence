@@ -1,6 +1,6 @@
 {
   "name": "apple-music-discord-presence",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "private": true,
   "description": "Apple Music Rich Presence for Discord on macOS and Windows",
   "repository": {
