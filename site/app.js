@@ -1,3 +1,8 @@
+const i18n = window.AMDPI18n;
+let releaseTag;
+function updateReleaseLabel() { document.querySelector("#release-version").textContent = releaseTag ? i18n.t("{version} available", { version: releaseTag }) : i18n.t("Free & open source"); }
+updateReleaseLabel();
+document.addEventListener("amdp-language-change", updateReleaseLabel);
 const downloads = {
   mac: "https://github.com/qtaghdi/apple-music-discord-presence/releases/latest/download/apple-music-discord-presence-macos-arm64.zip",
   windows: "https://github.com/qtaghdi/apple-music-discord-presence/releases/latest/download/apple-music-discord-presence-windows-x64.zip",
@@ -16,7 +21,8 @@ fetch("https://api.github.com/repos/qtaghdi/apple-music-discord-presence/release
 })
   .then((response) => response.ok ? response.json() : Promise.reject())
   .then((release) => {
-    document.querySelector("#release-version").textContent = `${release.tag_name} available`;
+    releaseTag = release.tag_name;
+    updateReleaseLabel();
   })
   .catch(() => {});
 

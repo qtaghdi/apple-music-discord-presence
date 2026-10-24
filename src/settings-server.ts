@@ -13,6 +13,7 @@ const files = new Map<string, readonly [string, string]>([
   ["/", ["index.html", "text/html; charset=utf-8"]],
   ["/assets/brand-mark.svg", ["assets/brand-mark.svg", "image/svg+xml"]],
   ["/favicon.svg", ["favicon.svg", "image/svg+xml"]],
+  ["/i18n.js", ["i18n.js", "text/javascript; charset=utf-8"]],
   ["/app.js", ["app.js", "text/javascript; charset=utf-8"]],
   ["/styles.css", ["styles.css", "text/css; charset=utf-8"]],
   ["/assets/quiet-color-artwork.webp", ["assets/quiet-color-artwork.webp", "image/webp"]],

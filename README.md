@@ -1,5 +1,7 @@
 # Apple Music Discord Presence
 
+**English** · [한국어](README.ko.md)
+
 [![CI](https://github.com/qtaghdi/apple-music-discord-presence/actions/workflows/ci.yml/badge.svg)](https://github.com/qtaghdi/apple-music-discord-presence/actions/workflows/ci.yml)
 [![Website](https://img.shields.io/badge/website-GitHub%20Pages-fa547f)](https://qtaghdi.github.io/apple-music-discord-presence/)
 
@@ -84,6 +86,10 @@ npm run install-agent
 This source-only LaunchAgent does not provide a menu bar icon and can be blocked by the installed Node binary’s macOS automation entitlements; the packaged app is recommended for desktop use. Remove it with `npm run uninstall-agent`. The repository must remain at the same path while its LaunchAgent is installed.
 
 Discord member-list status uses **Artist - Track** instead of the application name. The expanded activity card also uses this as its details line. Discord controls the activity-type icon and card heading, so the card may still say **Listening to Apple Music**. No extra emoji is added to the status text.
+
+## Language
+
+The website and local settings screen support English and Korean. Use the language selector in the header, or open `?lang=ko` / `?lang=en`. The first visit follows the browser language; explicit choices are remembered per site when browser storage is available. Switching language preserves unsaved settings and never changes track metadata.
 
 ## Configuration
 
