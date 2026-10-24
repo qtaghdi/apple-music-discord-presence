@@ -4,19 +4,13 @@ $root = $PSScriptRoot
 $configDirectory = Join-Path $env:APPDATA "Apple Music Discord Presence"
 $configFile = Join-Path $configDirectory "config.json"
 
-if (-not (Test-Path $configFile)) {
-    if ([string]::IsNullOrWhiteSpace($ClientId)) {
-        $ClientId = Read-Host "Paste your Discord Application ID"
-    }
-    if ($ClientId -notmatch '^\d{17,20}$') {
-        throw "The Discord Application ID must contain 17-20 digits."
-    }
+if (-not [string]::IsNullOrWhiteSpace($ClientId) -and $ClientId -notmatch '^\d{17,20}$') {
+    throw "The optional Discord application ID must contain 17-20 digits."
 }
 
 New-Item -ItemType Directory -Force -Path $configDirectory | Out-Null
 if (-not (Test-Path $configFile)) {
     $config = [ordered]@{
-        discordClientId = $ClientId
         pollIntervalMs = 1000
         showPaused = $false
         presence = [ordered]@{
@@ -26,7 +20,9 @@ if (-not (Test-Path $configFile)) {
             displayOrder = "artist-album"
         }
         artwork = [ordered]@{ enabled = $true; country = "US" }
-    } | ConvertTo-Json -Depth 4
+    }
+    if (-not [string]::IsNullOrWhiteSpace($ClientId)) { $config.discordClientId = $ClientId }
+    $config = $config | ConvertTo-Json -Depth 4
     [System.IO.File]::WriteAllText($configFile, $config, (New-Object System.Text.UTF8Encoding($false)))
 }
 

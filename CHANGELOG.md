@@ -2,6 +2,16 @@
 
 All notable user-facing changes are recorded here. Release-specific download notes live in [`releases/`](releases/).
 
+## [0.6.0] - 2026-10-24
+
+### Changed
+
+- New installations connect using the project’s shared public Discord Application ID without opening the developer portal or entering an ID.
+- Existing custom Application IDs and environment overrides remain supported.
+- README now leads with an actual Discord activity screenshot and direct platform downloads.
+- The landing page and settings screen include an optional Star on GitHub link; setup instructions reflect the simpler flow.
+- Added a real activity image for website social previews.
+
 ## [0.5.0] - 2026-10-23
 
 ### Changed

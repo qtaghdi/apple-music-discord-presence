@@ -2,7 +2,7 @@ APPLE MUSIC DISCORD PRESENCE | macOS Apple Silicon
 
 1. Extract the ZIP.
 2. Right-click Install.command and choose Open.
-3. Paste your Discord Application ID when asked.
+3. The shared Discord application is configured automatically. No ID or login needed.
 4. Allow Music automation when macOS asks.
 
 The app is copied to ~/Applications; reopen it there or with Spotlight. Use Uninstall.command to remove

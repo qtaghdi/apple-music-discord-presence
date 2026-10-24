@@ -9,12 +9,8 @@ CONFIG_FILE="$CONFIG_DIR/config.json"
 PLIST="$HOME/Library/LaunchAgents/io.github.apple-music-discord-presence.plist"
 LOG_DIR="$HOME/Library/Logs/Apple Music Discord Presence"
 
-if [[ -z "$CLIENT_ID" ]]; then
-  echo "Usage: npm run install-agent -- YOUR_DISCORD_APPLICATION_ID"
-  exit 1
-fi
-if [[ "$CLIENT_ID" != <-> ]] || (( ${#CLIENT_ID} < 17 || ${#CLIENT_ID} > 20 )); then
-  echo "The Discord application ID must contain 17-20 digits."
+if [[ -n "$CLIENT_ID" ]] && { [[ "$CLIENT_ID" != <-> ]] || (( ${#CLIENT_ID} < 17 || ${#CLIENT_ID} > 20 )); }; then
+  echo "The optional Discord application ID must contain 17-20 digits."
   exit 1
 fi
 
@@ -22,6 +18,7 @@ cd "$ROOT_DIR"
 npm run build
 mkdir -p "$CONFIG_DIR" "$HOME/Library/LaunchAgents" "$LOG_DIR"
 if [[ ! -f "$CONFIG_FILE" ]]; then
+  CLIENT_ID="${CLIENT_ID:-$(node --input-type=module -e 'import { SHARED_DISCORD_CLIENT_ID } from "./dist/src/config.js"; console.log(SHARED_DISCORD_CLIENT_ID)')}"
   printf '{\n  "discordClientId": "%s",\n  "pollIntervalMs": 1000,\n  "showPaused": false,\n  "presence": {\n    "showAlbum": true,\n    "showTimeRemaining": true,\n    "showButton": true,\n    "displayOrder": "artist-album"\n  },\n  "artwork": { "enabled": true, "country": "US" }\n}\n' "$CLIENT_ID" > "$CONFIG_FILE"
   chmod 600 "$CONFIG_FILE"
 fi

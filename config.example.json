@@ -1,5 +1,5 @@
 {
-  "discordClientId": "YOUR_DISCORD_APPLICATION_ID",
+  "discordClientId": "1562487067424854017",
   "pollIntervalMs": 1000,
   "showPaused": false,
   "presence": {
