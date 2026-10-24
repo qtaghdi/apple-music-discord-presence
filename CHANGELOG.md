@@ -2,6 +2,14 @@
 
 All notable user-facing changes are recorded here. Release-specific download notes live in [`releases/`](releases/).
 
+## [0.7.0] - 2026-10-24
+
+### Added
+
+- Complete Korean README with installation, configuration, permissions, and troubleshooting guidance.
+- English/Korean language selection on the landing page and settings screen, with browser-language detection, saved preference, and direct language links.
+- Translated settings status, save messages, errors, accessibility labels, and release labels. Language changes preserve unsaved display options and original music metadata.
+
 ## [0.6.0] - 2026-10-24
 
 ### Changed

@@ -1,3 +1,7 @@
+const i18n = window.AMDPI18n;
+let messageKey = "Changes update your activity right away.";
+let messageType = "";
+let connectionKey = "Connecting";
 const form = document.querySelector("#settings-form");
 const connectionState = document.querySelector("#connection-state");
 const saveMessage = document.querySelector("#save-message");
@@ -49,7 +53,9 @@ function updatePreview() {
 }
 
 function setMessage(message, type = "") {
-  saveMessage.textContent = message;
+  messageKey = message;
+  messageType = type;
+  saveMessage.textContent = i18n.t(message);
   saveMessage.className = `save-message ${type}`.trim();
 }
 
@@ -92,7 +98,7 @@ form.addEventListener("submit", async (event) => {
     writeForm(settings);
     setMessage("Saved. Your activity has been updated.", "success");
   } catch (error) {
-    setMessage(error instanceof Error ? error.message : "Could not save settings.", "error");
+    setMessage(error instanceof Error && error.message === "Failed to fetch" ? error.message : "Could not save settings.", "error");
   } finally {
     saveButton.disabled = false;
   }
@@ -101,14 +107,23 @@ form.addEventListener("submit", async (event) => {
 async function load() {
   try {
     writeForm(await requestSettings("/api/settings"));
-    connectionState.textContent = "Ready";
+    connectionKey = "Ready";
+    connectionState.textContent = i18n.t(connectionKey);
     connectionState.classList.add("ready");
   } catch (error) {
-    connectionState.textContent = "Unavailable";
+    connectionKey = "Unavailable";
+    connectionState.textContent = i18n.t(connectionKey);
     connectionState.classList.add("error");
-    setMessage(error instanceof Error ? error.message : "Could not load settings.", "error");
+    setMessage(error instanceof Error && error.message === "Failed to fetch" ? error.message : "Could not load settings.", "error");
     saveButton.disabled = true;
   }
 }
 
+document.addEventListener("amdp-language-change", () => {
+  connectionState.textContent = i18n.t(connectionKey);
+  setMessage(messageKey, messageType);
+  updatePreview();
+});
+setMessage(messageKey);
+connectionState.textContent = i18n.t(connectionKey);
 void load();

@@ -23,6 +23,7 @@ test("serves the local UI and saves same-origin settings", async () => {
   await Promise.all([
     writeFile(join(assets, "index.html"), "<h1>Settings</h1>"),
     writeFile(join(assets, "app.js"), ""),
+    writeFile(join(assets, "i18n.js"), "// localization"),
     writeFile(join(assets, "styles.css"), ""),
     writeFile(join(assets, "assets", "quiet-color-artwork.webp"), Buffer.from("RIFF")),
     writeFile(join(assets, "assets", "quiet-color-backdrop.webp"), Buffer.from("RIFF")),
@@ -47,6 +48,9 @@ test("serves the local UI and saves same-origin settings", async () => {
     assert.deepEqual(await (await fetch(`${server.origin}/health`)).json(), { ok: true, discordConnected: true });
     discordConnected = false;
     assert.deepEqual(await (await fetch(`${server.origin}/health`)).json(), { ok: true, discordConnected: false });
+    const languageScript = await fetch(`${server.origin}/i18n.js?v=0.7.0`);
+    assert.equal(languageScript.status, 200);
+    assert.match(languageScript.headers.get("content-type") ?? "", /javascript/);
     const page = await fetch(server.origin);
     assert.equal(page.status, 200);
     assert.match(await page.text(), /Settings/);
