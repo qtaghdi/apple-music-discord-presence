@@ -1,6 +1,14 @@
 param([string]$ClientId)
 $ErrorActionPreference = "Stop"
 $root = $PSScriptRoot
+if ([string]::IsNullOrWhiteSpace($root)) {
+    throw "Extract the entire ZIP to a permanent folder, then run Install.cmd from that folder."
+}
+foreach ($requiredFile in @('Start.ps1', 'runtime\node.exe', 'dist\src\index.js', 'native\MusicMetadata.ps1', 'settings\assets\brand-mark.ico')) {
+    if (-not (Test-Path -LiteralPath (Join-Path $root $requiredFile) -PathType Leaf)) {
+        throw "Missing $requiredFile. Extract the entire release ZIP before running Install.cmd."
+    }
+}
 $configDirectory = Join-Path $env:APPDATA "Apple Music Discord Presence"
 $configFile = Join-Path $configDirectory "config.json"
 
@@ -34,6 +42,7 @@ $shortcut = $shell.CreateShortcut($shortcutPath)
 $shortcut.TargetPath = "$env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe"
 $shortcut.Arguments = $arguments
 $shortcut.WorkingDirectory = $root
+$shortcut.IconLocation = (Join-Path $root 'settings\assets\brand-mark.ico') + ',0'
 $shortcut.Save()
 # Preserve an existing login preference while replacing the old background-only command.
 $runKey = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run'

@@ -29,6 +29,8 @@ After extracting the ZIP, run `Install.command` on macOS or `Install.cmd` on Win
 
 - **macOS:** the installer copies the app to `~/Applications`. Click the **music-note icon in the menu bar → 설정 열기**. You can reopen the app from your user Applications folder or Spotlight after quitting.
 - **Windows:** keep the extracted folder in a permanent location. The installer creates **Apple Music Discord Presence** in the Start menu. Right-click its **system tray icon → Open Settings** (the icon may be under the hidden-icons arrow). Double-clicking the icon also opens settings.
+
+On Windows, use **Extract All** before running `Install.cmd`; do not run the installer inside the ZIP or paste its PowerShell contents into a terminal. The entire extracted folder is required. The tray and Start menu shortcut use the bundled app logo. If an older shortcut shows a generic icon or fails to launch, quit the app and rerun `Install.cmd` from the fully extracted release folder.
 - The menu shows the Discord connection status and offers reconnect, logs, launch at login, and quit. Enable **로그인 시 자동 실행 / Launch at login** if desired. Quitting stops the presence client for the current session; turn off launch at login separately to prevent it starting next time.
 
 The existing `Settings.command` / `Settings.cmd` helpers remain available. The macOS installer builds an ad-hoc-signed app, not a notarized distribution; macOS may require explicit approval in Privacy & Security on first launch.

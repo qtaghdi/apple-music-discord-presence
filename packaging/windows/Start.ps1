@@ -24,7 +24,8 @@ $runKey = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run"
 $runName = 'AppleMusicDiscordPresence'
 $runCommand = "powershell.exe -STA -NoLogo -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File `"$(Join-Path $root 'Start.ps1')`""
 $tray = New-Object System.Windows.Forms.NotifyIcon
-$tray.Icon = [System.Drawing.SystemIcons]::Application
+$appIcon = New-Object System.Drawing.Icon((Join-Path $root 'settings\assets\brand-mark.ico'), 32, 32)
+$tray.Icon = $appIcon
 $tray.Text = 'Apple Music Discord Presence'
 $menu = New-Object System.Windows.Forms.ContextMenuStrip
 $status = $menu.Items.Add('Waiting for Discord')
@@ -62,6 +63,7 @@ try {
 } finally {
     $timer.Stop(); $timer.Dispose()
     $tray.Visible = $false; $tray.Dispose(); $menu.Dispose()
+    $appIcon.Dispose()
     Stop-Worker
     if ($owned) { $mutex.ReleaseMutex() }
     $mutex.Dispose()
