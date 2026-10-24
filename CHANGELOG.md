@@ -2,6 +2,13 @@
 
 All notable user-facing changes are recorded here. Release-specific download notes live in [`releases/`](releases/).
 
+## Unreleased
+
+### Fixed
+
+- Windows tray and Start menu shortcut now use the bundled app logo instead of generic Windows icons.
+- The Windows installer checks its script location and required release files before changing configuration or registering a shortcut, with extraction instructions for incomplete packages.
+
 ## [0.7.0] - 2026-10-24
 
 ### Added
