@@ -2,7 +2,13 @@
 
 All notable user-facing changes are recorded here. Release-specific download notes live in [`releases/`](releases/).
 
-## Unreleased
+## [0.8.0] - 2026-10-25
+
+### Added
+
+- Crawlable static Korean landing page at `/ko/`, with reciprocal language links, stable canonical URLs, sitemap, social metadata, and SoftwareApplication structured data.
+- Search Console verification metadata and an IndexNow ownership file for notifying participating search engines.
+- Windows package smoke test that decodes the bundled ICO at tray sizes and saves/reloads a shortcut using an extracted path containing spaces.
 
 ### Fixed
 

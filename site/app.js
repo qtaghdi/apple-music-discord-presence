@@ -47,3 +47,10 @@ const animatedSections = new IntersectionObserver((entries) => {
 }, { threshold: 0.3 });
 
 document.querySelectorAll("[data-animate]").forEach((element) => animatedSections.observe(element));
+
+// Language-specific pages remain accessible to crawlers without JavaScript.
+document.addEventListener("amdp-language-change", () => {
+  const root = new URL(document.documentElement.dataset.siteRoot || "./", location.href);
+  const target = new URL(i18n.language === "ko" ? "ko/" : "./", root);
+  if (target.pathname !== location.pathname) location.assign(target.href + location.hash);
+});

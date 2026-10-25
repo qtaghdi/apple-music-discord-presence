@@ -19,6 +19,7 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run verify
+      - run: npm run check:site
       - run: ./scripts/package-macos.sh
       - run: codesign --verify --deep --strict "release/apple-music-discord-presence-macos-arm64/Apple Music Discord Presence.app"
 
@@ -36,9 +37,11 @@ jobs:
       - name: Validate PowerShell syntax
         shell: pwsh
         run: |
-          Get-ChildItem native,packaging -Recurse -Filter *.ps1 | ForEach-Object {
+          Get-ChildItem native,packaging,scripts -Recurse -Filter *.ps1 | ForEach-Object {
             [void][scriptblock]::Create((Get-Content $_.FullName -Raw))
           }
       - name: Validate Windows packaging
         shell: pwsh
-        run: ./scripts/package-windows.ps1
+        run: |
+          ./scripts/package-windows.ps1
+          ./scripts/verify-windows-package.ps1 -Archive release/apple-music-discord-presence-windows-x64.zip

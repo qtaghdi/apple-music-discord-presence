@@ -116,7 +116,7 @@
     const template = language === "ko" ? (messages[message] ?? message) : message;
     return template.replace(/\{(\w+)\}/g, (match, key) => String(values[key] ?? match));
   }
-  const api = { chooseLanguage, t, get language() { return language; }, setLanguage };
+  const api = { messages: Object.freeze(messages), chooseLanguage, t, get language() { return language; }, setLanguage };
   window.AMDPI18n = api;
   const originals = new WeakMap();
   const attributes = new WeakMap();
@@ -126,7 +126,7 @@
     let node;
     while ((node = walker.nextNode())) {
       if (node.parentElement?.closest("script, style, [data-i18n-dynamic], .language-select")) continue;
-      if (!originals.has(node)) originals.set(node, node.nodeValue);
+      if (!originals.has(node)) originals.set(node, node.parentElement?.hasAttribute("data-i18n-source") ? node.nodeValue.replace(node.nodeValue.trim(), node.parentElement.getAttribute("data-i18n-source")) : node.nodeValue);
       const original = originals.get(node);
       const key = original.trim();
       if (key && messages[key]) node.nodeValue = original.replace(key, t(key));
@@ -136,7 +136,7 @@
       const initial = attributes.get(element);
       for (const attr of ["aria-label", "alt", "content"]) {
         if (!element.hasAttribute(attr)) continue;
-        initial[attr] ??= element.getAttribute(attr);
+        initial[attr] ??= element.getAttribute(`data-i18n-original-${attr}`) ?? element.getAttribute(attr);
         if (messages[initial[attr]]) element.setAttribute(attr, t(initial[attr]));
       }
     });
@@ -153,7 +153,7 @@
   if (typeof document !== "undefined") {
     let saved;
     try { saved = localStorage.getItem("amdp.language"); } catch {}
-    language = chooseLanguage(new URLSearchParams(location.search).get("lang"), saved, navigator.languages ?? [navigator.language]);
+    language = chooseLanguage(new URLSearchParams(location.search).get("lang") ?? (document.documentElement.lang === "ko" ? "ko" : null), saved, navigator.languages ?? [navigator.language]);
     document.querySelectorAll(".language-select").forEach((select) => select.addEventListener("change", () => setLanguage(select.value)));
     apply();
   }

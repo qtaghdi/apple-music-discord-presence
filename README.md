@@ -203,3 +203,7 @@ Track metadata stays on the computer except when artwork or the Apple Music butt
 On macOS run `npm run verify && ./scripts/package-macos.sh`, then open `release/apple-music-discord-presence-macos-arm64/Install.command`. The app host owns the Node worker and stops it when you quit. On Windows run `npm run build:ts`, `npm test`, and `./scripts/package-windows.ps1`; the tray host uses built-in Windows Forms. There are no additional runtime npm dependencies.
 
 To uninstall, turn off launch at login and quit using the icon menu. On macOS move `~/Applications/Apple Music Discord Presence.app` to Trash. On Windows run `Uninstall.cmd` to remove the Start menu shortcut and startup entry, then remove the extracted folder. Configuration and logs remain for future installs. Before upgrading, quit the running app; rerun the installer with the new ZIP.
+
+## Search discovery
+
+The [Korean landing page](https://qtaghdi.github.io/apple-music-discord-presence/ko/) and English homepage have crawlable static content, language alternates, canonical URLs, a [sitemap](https://qtaghdi.github.io/apple-music-discord-presence/sitemap.xml), and application metadata. Maintainers can use [the search setup guide](docs/SEARCH.md) for site generation and submissions. Search engines decide when and whether pages appear.

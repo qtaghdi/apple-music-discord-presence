@@ -33,10 +33,11 @@ jobs:
         run: |
           npm run build:ts
           npm test
-          Get-ChildItem native,packaging -Recurse -Filter *.ps1 | ForEach-Object {
+          Get-ChildItem native,packaging,scripts -Recurse -Filter *.ps1 | ForEach-Object {
             [void][scriptblock]::Create((Get-Content $_.FullName -Raw))
           }
           ./scripts/package-windows.ps1
+          ./scripts/verify-windows-package.ps1 -Archive release/apple-music-discord-presence-windows-x64.zip
       - uses: actions/upload-artifact@v7
         with:
           name: ${{ matrix.platform }}-package

@@ -12,7 +12,7 @@ Apple Music에서 듣는 음악을 **앨범 커버·재생바와 함께 Discord�
 
 **다운로드 → 설치 → 음악 재생.** Application ID 입력, Discord 로그인, 봇 토큰, Node.js 설치가 필요하지 않습니다.
 
-[macOS용 다운로드](https://github.com/qtaghdi/apple-music-discord-presence/releases/latest/download/apple-music-discord-presence-macos-arm64.zip) · [Windows용 다운로드](https://github.com/qtaghdi/apple-music-discord-presence/releases/latest/download/apple-music-discord-presence-windows-x64.zip) · [한국어 웹사이트](https://qtaghdi.github.io/apple-music-discord-presence/?lang=ko)
+[macOS용 다운로드](https://github.com/qtaghdi/apple-music-discord-presence/releases/latest/download/apple-music-discord-presence-macos-arm64.zip) · [Windows용 다운로드](https://github.com/qtaghdi/apple-music-discord-presence/releases/latest/download/apple-music-discord-presence-windows-x64.zip) · [한국어 웹사이트](https://qtaghdi.github.io/apple-music-discord-presence/ko/)
 
 마음에 드셨다면 [GitHub에서 스타를 눌러주세요](https://github.com/qtaghdi/apple-music-discord-presence).
 
@@ -60,7 +60,7 @@ Discord 상태 목록에는 **아티스트 - 곡 제목**이 표시됩니다. Di
 
 `?lang=ko` 또는 `?lang=en`으로 특정 언어를 바로 열 수 있습니다. 언어 변경은 음악 표시 옵션을 바꾸거나 자동 저장하지 않습니다. 곡 제목·아티스트·앨범명은 Music 앱의 원래 정보를 유지합니다.
 
-- [한국어 랜딩](https://qtaghdi.github.io/apple-music-discord-presence/?lang=ko)
+- [한국어 랜딩](https://qtaghdi.github.io/apple-music-discord-presence/ko/)
 - [한국어 로컬 설정](http://127.0.0.1:47621/?lang=ko) — 앱 실행 중에만 접속 가능
 
 ## 설정
@@ -178,3 +178,7 @@ macOS와 Windows CI에서 빌드·테스트를 검사합니다. `v*` 태그는 Z
 ## 라이선스
 
 [MIT](LICENSE). 독립 프로젝트이며 Apple 및 Discord와 제휴하지 않습니다.
+
+## 검색엔진 등록
+
+영문 홈과 [한국어 랜딩](https://qtaghdi.github.io/apple-music-discord-presence/ko/)은 JavaScript 없이도 내용을 읽을 수 있는 정적 HTML을 제공합니다. 언어별 대표 주소, 사이트맵, 구조화된 앱 정보를 포함합니다. 유지보수 절차는 [검색 설정 안내](docs/SEARCH.md)를 참고하세요. 검색 반영 시점과 순위는 각 검색엔진이 결정합니다.

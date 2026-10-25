@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="ko" data-site-root="../">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="macOS와 Windows에서 Apple Music의 곡 정보·앨범 커버·재생바를 Discord에 표시하세요." data-i18n-original-content="Show what you're playing in Apple Music as rich, accurate Discord presence on macOS and Windows.">
+    <link rel="canonical" href="https://qtaghdi.github.io/apple-music-discord-presence/ko/">
+    <link rel="alternate" hreflang="en" href="https://qtaghdi.github.io/apple-music-discord-presence/">
+    <link rel="alternate" hreflang="ko" href="https://qtaghdi.github.io/apple-music-discord-presence/ko/">
+    <link rel="alternate" hreflang="x-default" href="https://qtaghdi.github.io/apple-music-discord-presence/">
+    <link rel="sitemap" type="application/xml" href="https://qtaghdi.github.io/apple-music-discord-presence/sitemap.xml">
+    <meta name="google-site-verification" content="BkJkT7lDL3ldgHr63LDOVVeHNA8sdg0sNYvXxFcoLN0">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta property="og:url" content="https://qtaghdi.github.io/apple-music-discord-presence/ko/">
+    <meta property="og:locale" content="ko_KR">
+    <meta name="theme-color" content="#09152d">
+    <meta property="og:title" content="Apple Music Discord Presence">
+    <meta property="og:description" content="Apple Music에서 듣는 음악을 Discord에 표시하세요. macOS와 Windows를 지원합니다." data-i18n-original-content="Show your current Apple Music track on Discord. Available for macOS and Windows.">
+    <meta property="og:image" content="https://qtaghdi.github.io/apple-music-discord-presence/assets/discord-presence.png">
+    <meta property="og:image:alt" content="앨범 커버와 재생바가 표시된 실제 Discord 활동 화면" data-i18n-original-content="Actual Discord activity with Apple Music artwork and playback progress">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:type" content="website">
+    <title>애플뮤직 디스코드 연동 · 앨범 커버와 재생바 | AM Presence</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../styles.css?v=0.8.0">
+    <script src="../i18n.js?v=0.8.0" defer></script>
+    <script src="../app.js?v=0.8.0" defer></script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Apple Music Discord Presence",
+  "alternateName": "AM Presence",
+  "url": "https://qtaghdi.github.io/apple-music-discord-presence/ko/",
+  "inLanguage": "ko",
+  "description": "Show Apple Music on Discord with album artwork and live playback progress on macOS and Windows.",
+  "applicationCategory": "MultimediaApplication",
+  "operatingSystem": "macOS 13 or later (Apple Silicon); Windows 10 1809 or later (x64)",
+  "license": "https://opensource.org/license/mit/",
+  "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "downloadUrl": [
+    "https://github.com/qtaghdi/apple-music-discord-presence/releases/latest/download/apple-music-discord-presence-macos-arm64.zip",
+    "https://github.com/qtaghdi/apple-music-discord-presence/releases/latest/download/apple-music-discord-presence-windows-x64.zip"
+  ],
+  "screenshot": "https://qtaghdi.github.io/apple-music-discord-presence/assets/discord-presence.png",
+  "softwareVersion": "0.8.0"
+}
+    </script>
+    <noscript><style>.reveal,.download-cta[data-animate] .download-card{opacity:1!important;transform:none!important}</style></noscript>
+  </head>
+  <body>
+    <a class="skip-link" href="#main"><span data-i18n-source="Skip to content">본문으로 건너뛰기</span></a>
+    <header class="nav-wrap">
+      <nav class="nav" aria-label="주 메뉴" data-i18n-original-aria-label="Primary navigation">
+        <a class="brand" href="#top" aria-label="Apple Music Discord Presence 홈" data-i18n-original-aria-label="Apple Music Discord Presence home">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span>AM Presence</span>
+        </a>
+        <div class="nav-links">
+          <a href="#features"><span data-i18n-source="Features">기능</span></a>
+          <a href="#setup"><span data-i18n-source="Setup">설치 방법</span></a>
+          <a href="https://github.com/qtaghdi/apple-music-discord-presence">GitHub</a>
+          <select class="language-select" aria-label="언어" data-i18n-original-aria-label="Language"><option value="en" lang="en">English</option><option value="ko" lang="ko">한국어</option></select>
+          <a class="nav-download" href="#download"><span data-i18n-source="Download">다운로드</span></a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="top">
+        <div class="paint-shape hero-shape-one" aria-hidden="true"></div>
+        <div class="paint-shape hero-shape-two" aria-hidden="true"></div>
+        <div class="paint-leaf hero-leaf" aria-hidden="true"></div>
+        <div class="hero-copy">
+          <h1><span data-i18n-source="Your music,">지금 듣는 음악,</span><br><em><span data-i18n-source="present.">Discord에도.</span></em></h1>
+          <p class="hero-lede"><span data-i18n-source="Show what you’re listening to on Apple Music in your Discord activity. It runs quietly and locally on your computer.">Apple Music에서 듣는 음악을 Discord에 표시하세요. 내 컴퓨터에서 조용히 작동합니다.</span></p>
+          <div class="hero-actions">
+            <a class="button primary platform-download" href="https://github.com/qtaghdi/apple-music-discord-presence/releases/latest/download/apple-music-discord-presence-macos-arm64.zip">
+              <span class="download-icon" aria-hidden="true">↓</span>
+              <span><small><span data-i18n-source="Download for">다운로드</span></small><strong class="platform-label">macOS</strong></span>
+            </a>
+            <a class="button secondary" href="https://github.com/qtaghdi/apple-music-discord-presence"><span data-i18n-source="Star on GitHub">GitHub에서 스타 주기</span> <span aria-hidden="true">↗</span></a>
+          </div>
+          <p class="release-note"><span class="pulse"></span><span id="release-version" data-i18n-dynamic aria-live="polite"><span data-i18n-source="Free &amp; open source">무료 · 오픈 소스</span></span> <span data-i18n-source="· No Node.js required">· Node.js 설치 불필요</span></p>
+        </div>
+
+        <div class="hero-visual" role="img" aria-label="Apple Music 재생 정보가 표시된 Discord 프로필 예시" data-i18n-original-aria-label="Example Discord profile showing an Apple Music track">
+          <div class="orbit orbit-one"></div>
+          <div class="orbit orbit-two"></div>
+          <div class="music-window">
+            <div class="window-top"><span></span><span></span><span></span><b>Apple Music</b></div>
+            <div class="cover-art">
+              <span class="sr-only"><span data-i18n-source="Abstract blue, lavender, and pink album artwork">파랑·보라·분홍색 추상 앨범 커버</span></span>
+            </div>
+            <div class="track-meta"><strong>Midnight Signal</strong><span>Satellite Hearts</span></div>
+            <div class="progress"><i></i></div>
+            <div class="player-controls"><span>‹</span><b>Ⅱ</b><span>›</span></div>
+          </div>
+          <div class="discord-card">
+            <div class="discord-label"><span class="discord-dot"></span> <span data-i18n-source="LISTENING TO APPLE MUSIC">Apple Music 듣는 중</span></div>
+            <div class="presence">
+              <div class="presence-cover"><div></div><span>♫</span></div>
+              <div class="presence-copy"><strong>Midnight Signal</strong><span>Satellite Hearts · Neon Afterglow</span><small>1:19 / 2:18</small></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="trust-row" aria-label="주요 특징" data-i18n-original-aria-label="Product highlights">
+          <div><strong>0</strong><span><span data-i18n-source="runtime packages">추가 런타임 패키지</span></span></div>
+          <div><strong><span data-i18n-source="Local">로컬</span></strong><span><span data-i18n-source="metadata bridge">음악 정보 연결</span></span></div>
+          <div><strong><span data-i18n-source="Auto">자동</span></strong><span><span data-i18n-source="Discord reconnect">Discord 재연결</span></span></div>
+        </div>
+      </section>
+
+      <section class="narrative" id="features">
+        <div class="section-intro reveal">
+          <span class="section-number">01</span>
+          <div><p class="kicker"><span data-i18n-source="Built to stay in sync">음악과 함께, 언제나</span></p><h2><span data-i18n-source="Your music,">지금 듣는 음악,</span><br><em><span data-i18n-source="where you are.">어디서나 함께.</span></em></h2></div>
+        </div>
+        <div class="feature-stage reveal">
+          <div class="flow-visual">
+            <img src="../assets/feature-flow.webp" alt="Apple Music의 음악 정보가 로컬 연결을 거쳐 Discord로 전달되는 모습" data-i18n-original-alt="Apple Music flowing through a local bridge to Discord">
+            <div class="flow-labels" aria-hidden="true"><span>Apple Music</span><span><span data-i18n-source="Local bridge">로컬 연결</span></span><span>Discord</span></div>
+          </div>
+          <div class="feature-list">
+            <article><span>01</span><div><h3><span data-i18n-source="Live track changes">곡이 바뀌면 바로 반영</span></h3><p><span data-i18n-source="Titles, artists, albums, play state, and seeks update without restarting the app.">제목·아티스트·앨범·재생 상태·재생 위치가 앱 재시작 없이 반영됩니다.</span></p></div></article>
+            <article><span>02</span><div><h3><span data-i18n-source="Accurate playback progress">정확한 재생 진행률</span></h3><p><span data-i18n-source="The progress bar stays aligned with the actual player position.">실제 재생 위치에 맞춰 재생바가 움직입니다.</span></p></div></article>
+            <article><span>03</span><div><h3><span data-i18n-source="Display options">원하는 정보만 표시</span></h3><p><span data-i18n-source="Choose whether to show album details, artwork, playback progress, pause state, and the Apple Music button.">앨범명·커버·재생바·일시정지 중 표시·Apple Music 버튼을 선택할 수 있습니다.</span></p></div></article>
+            <article><span>04</span><div><h3><span data-i18n-source="Automatic reconnection">끊겨도 자동 재연결</span></h3><p><span data-i18n-source="If Discord restarts, the app reconnects and restores your activity automatically.">Discord를 다시 켜면 자동으로 연결하고 재생 정보를 복원합니다.</span></p></div></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="platforms" id="platforms">
+        <div class="section-intro reveal">
+          <span class="section-number">02</span>
+          <div><p class="kicker"><span data-i18n-source="Native where it counts">내 컴퓨터에 맞춘 연결</span></p><h2><span data-i18n-source="Made for your desktop.">Mac에서도, Windows에서도.</span></h2></div>
+        </div>
+        <div class="platform-grid">
+          <article class="platform-card mac-card reveal">
+            <div class="platform-symbol" aria-hidden="true"><span class="brand-icon apple-icon"></span></div>
+            <div><span class="availability"><span data-i18n-source="Available now">지금 사용 가능</span></span><h3>macOS</h3><p><span data-i18n-source="A small Swift helper reads Music directly through ScriptingBridge. It does not use JXA, Deno, or an intermediary server.">Music 앱에서 현재 재생 정보를 직접 읽습니다. 중계 서버 없이 내 Mac에서 작동합니다.</span></p></div>
+            <a href="https://github.com/qtaghdi/apple-music-discord-presence/releases/latest/download/apple-music-discord-presence-macos-arm64.zip"><span data-i18n-source="Download Apple Silicon ZIP">Apple Silicon용 ZIP 다운로드</span> <span aria-hidden="true">↓</span></a>
+          </article>
+          <article class="platform-card windows-card reveal">
+            <div class="platform-symbol" aria-hidden="true"><span class="brand-icon windows-icon"></span></div>
+            <div><span class="availability"><span data-i18n-source="Available now">지금 사용 가능</span></span><h3>Windows</h3><p><span data-i18n-source="Uses the Windows system media session exposed by Apple Music and connects to Discord through native named pipes.">Windows의 Apple Music 재생 정보를 읽어 같은 컴퓨터의 Discord에 직접 연결합니다.</span></p></div>
+            <a href="https://github.com/qtaghdi/apple-music-discord-presence/releases/latest/download/apple-music-discord-presence-windows-x64.zip"><span data-i18n-source="Download Windows ZIP">Windows용 ZIP 다운로드</span> <span aria-hidden="true">↓</span></a>
+          </article>
+        </div>
+      </section>
+
+      <section class="setup" id="setup">
+        <div class="section-intro reveal">
+          <span class="section-number">03</span>
+          <div><p class="kicker"><span data-i18n-source="Three-minute setup">3분이면 준비 완료</span></p><h2><span data-i18n-source="Download. Connect. Listen.">설치하고, 음악을 틀어보세요.</span></h2></div>
+        </div>
+        <ol class="steps">
+          <li class="reveal"><span>1</span><div><h3><span data-i18n-source="Download your ZIP">내 운영체제에 맞게 다운로드</span></h3><p><span data-i18n-source="Choose macOS or Windows. The runtime is already included.">macOS 또는 Windows용 ZIP을 받으세요. 실행에 필요한 런타임은 포함되어 있습니다.</span></p></div></li>
+          <li class="reveal"><span>2</span><div><h3><span data-i18n-source="Install and allow access">설치하고 권한 허용</span></h3><p><span data-i18n-source="The shared Discord app is ready to use. Allow Music access when macOS asks, then press play.">공용 Discord 앱이 미리 연결되어 있습니다. macOS에서 Music 접근을 요청하면 허용해 주세요.</span></p></div></li>
+          <li class="reveal"><span>3</span><div><h3><span data-i18n-source="Press play">음악 재생</span></h3><p><span data-i18n-source="Keep Apple Music and desktop Discord open. Open Settings from the macOS menu bar or Windows tray icon.">Apple Music과 Discord 데스크톱 앱을 켜세요. 설정은 Mac 메뉴 막대 또는 Windows 트레이에서 열 수 있습니다.</span></p></div></li>
+        </ol>
+        <div class="privacy-note reveal"><span aria-hidden="true">◉</span><p><strong><span data-i18n-source="Your listening stays yours.">내 음악 정보는 소중하니까.</span></strong> <span data-i18n-source="Track details go only to Discord and, when artwork is enabled, Apple's public catalog search. There are no analytics or relay servers.">음악 정보는 Discord와, 커버 검색이 켜져 있을 때 Apple의 공개 검색 API에만 전달됩니다. 분석 도구와 중계 서버는 없습니다.</span></p></div>
+      </section>
+
+      <section class="download-cta" id="download" data-animate>
+        <div class="cta-noise" aria-hidden="true"></div>
+        <div class="cta-content reveal">
+          <div class="cta-brands" aria-label="Apple Music과 Discord" data-i18n-original-aria-label="Apple Music and Discord">
+            <span class="cta-music" aria-hidden="true"><img class="apple-music-icon" src="../icons/apple-music.svg" alt=""></span>
+            <span class="cta-times" aria-hidden="true">×</span>
+            <span class="cta-discord" aria-hidden="true"><span class="brand-icon discord-icon"></span></span>
+          </div>
+          <h2><span data-i18n-source="Let Discord hear">지금 듣는 음악을</span><br><span data-i18n-source="what you hear.">Discord에서도.</span></h2>
+          <p><span data-i18n-source="Free, open source, and local-first.">무료 · 오픈 소스 · 내 컴퓨터에서 작동</span></p>
+          <div class="download-grid">
+            <a class="download-card" href="https://github.com/qtaghdi/apple-music-discord-presence/releases/latest/download/apple-music-discord-presence-macos-arm64.zip">
+              <span class="os-icon" aria-hidden="true"><span class="brand-icon apple-icon"></span></span><span><small>Apple Silicon</small><strong><span data-i18n-source="Download for macOS">macOS용 다운로드</span></strong></span><b aria-hidden="true">↓</b>
+            </a>
+            <a class="download-card" href="https://github.com/qtaghdi/apple-music-discord-presence/releases/latest/download/apple-music-discord-presence-windows-x64.zip">
+              <span class="os-icon" aria-hidden="true"><span class="brand-icon windows-icon"></span></span><span><small>64-bit</small><strong><span data-i18n-source="Download for Windows">Windows용 다운로드</span></strong></span><b aria-hidden="true">↓</b>
+            </a>
+          </div>
+          <a class="release-link" href="https://github.com/qtaghdi/apple-music-discord-presence/releases/latest"><span data-i18n-source="Release notes &amp; all downloads">업데이트 내역 · 전체 다운로드</span> <span aria-hidden="true">↗</span></a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"></span><span>AM Presence</span></a>
+      <p><span data-i18n-source="Independent open-source software. Not affiliated with Apple or Discord.">독립 오픈 소스 프로젝트입니다. Apple 및 Discord와 제휴하지 않습니다.</span></p>
+      <a href="https://github.com/qtaghdi/apple-music-discord-presence">GitHub <span aria-hidden="true">↗</span></a>
+    </footer>
+  </body>
+</html>

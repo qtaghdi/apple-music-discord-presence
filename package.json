@@ -1,6 +1,6 @@
 {
   "name": "apple-music-discord-presence",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "private": true,
   "description": "Apple Music Rich Presence for Discord on macOS and Windows",
   "repository": {
@@ -26,7 +26,9 @@
     "verify": "npm run build && npm test",
     "install-agent": "./scripts/install-launch-agent.sh",
     "uninstall-agent": "./scripts/uninstall-launch-agent.sh",
-    "build:menubar": "mkdir -p .build && swiftc -O -framework AppKit native/MenuBar.swift -o .build/apple-music-presence"
+    "build:menubar": "mkdir -p .build && swiftc -O -framework AppKit native/MenuBar.swift -o .build/apple-music-presence",
+    "build:site": "node scripts/build-search-pages.mjs",
+    "check:site": "npm run build:site && git diff --exit-code -- site/ko/index.html"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",
